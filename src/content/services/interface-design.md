@@ -18,6 +18,7 @@ process:
   - title: Specify
     body: A written spec your engineers can build from without guessing.
 order: 2
+draft: true
 ---
 
 ## The states nobody screenshots

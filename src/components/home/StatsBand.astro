@@ -32,7 +32,7 @@ import { stats, statsHeading, reel } from '~/data/stats';
         {
           stats.map((stat) => (
             <div class="stat">
-              <b data-count={stat.value} data-suffix={stat.suffix}>{`${stat.value}${stat.suffix ?? ''}`}</b>
+              <b>{stat.value}</b>
               <span>{stat.label}</span>
             </div>
           ))
@@ -43,40 +43,6 @@ import { stats, statsHeading, reel } from '~/data/stats';
 </section>
 
 <script>
-  /* --- Count-up on the stat figures ------------------------------- */
-  {
-    const nums = document.querySelectorAll<HTMLElement>('[data-count]');
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (nums.length && 'IntersectionObserver' in window && !reduce) {
-      const io = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (!entry.isIntersecting) continue;
-            const el = entry.target as HTMLElement;
-            io.unobserve(el);
-
-            const target = Number.parseInt(el.dataset.count ?? '0', 10) || 0;
-            const suffix = el.dataset.suffix ?? '';
-            const duration = 1300;
-            let start: number | null = null;
-
-            const step = (ts: number) => {
-              start ??= ts;
-              const p = Math.min((ts - start) / duration, 1);
-              const eased = 1 - Math.pow(1 - p, 3);
-              el.textContent = Math.round(target * eased) + suffix;
-              if (p < 1) window.requestAnimationFrame(step);
-            };
-            window.requestAnimationFrame(step);
-          }
-        },
-        { threshold: 0.5 }
-      );
-      nums.forEach((n) => io.observe(n));
-    }
-  }
-
   /* --- Reel: swap the poster for the embed on click ---------------- */
   {
     const reel = document.getElementById('reel');

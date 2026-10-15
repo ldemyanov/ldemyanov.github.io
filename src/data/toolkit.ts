@@ -1,19 +1,18 @@
 import type { ToolkitItem } from '~/types';
 
 export const toolkit: ToolkitItem[] = [
-  { icon: 'pen', title: 'Art direction', detail: 'One visual language, held across every surface.' },
-  { icon: 'type', title: 'Typography', detail: 'Scales, pairings and a self-hosted font setup.' },
-  { icon: 'motion', title: 'Motion', detail: 'Transitions with a reason, and a reduced-motion path.' },
-  { icon: 'device', title: 'Responsive', detail: 'Every layout checked from 320px through 1920px.' },
-  { icon: 'code', title: 'Front end', detail: 'Semantic markup and CSS your engineers can read.' },
-  { icon: 'spark', title: 'Colour', detail: 'Palettes checked for contrast before they get pretty.' },
-  { icon: 'layers', title: 'Systems', detail: 'Naming that survives the next rebrand.' },
-  { icon: 'flag', title: 'Accessibility', detail: 'Contrast, focus order and keyboard paths, tested.' },
+  { icon: 'code', title: 'Языки и разметка', detail: 'HTML · CSS · JavaScript · TypeScript' },
+  { icon: 'device', title: 'Фреймворки', detail: 'React · Next.js · Svelte · Vue' },
+  { icon: 'layers', title: 'Управление состоянием и данными', detail: 'Redux · MobX · Zustand · TanStack Query' },
+  { icon: 'layers', title: 'Backend и ORM', detail: 'NestJS · Sequelize · Prisma' },
+  { icon: 'chart', title: 'Базы данных и очереди', detail: 'PostgreSQL · MongoDB · RabbitMQ' },
+  { icon: 'spark', title: 'Поиск и аналитика', detail: 'Elasticsearch · Kibana' },
+  { icon: 'grid', title: 'Сборка и микрофронтенды', detail: 'Webpack · Module Federation · Vite · Rollup' },
+  { icon: 'flag', title: 'Контейнеризация', detail: 'Docker' },
 ];
 
 export const toolkitHeading = {
-  eyebrow: 'How I work',
-  title: 'Nothing exotic in the box.',
-  intro:
-    'Tools your team already has, files your team can open, and a handover that does not depend on me answering messages six months from now.',
+  eyebrow: 'Технический стек',
+  title: 'Инструменты для разработки продукта целиком.',
+  intro: 'От пользовательского интерфейса и серверной логики до хранения данных, интеграций и сборки приложений.',
 };

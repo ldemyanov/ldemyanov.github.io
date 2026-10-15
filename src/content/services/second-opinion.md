@@ -18,6 +18,7 @@ process:
   - title: Verdict
     body: A written document with findings ranked by cost, and a call to discuss it.
 order: 6
+draft: true
 ---
 
 ## When you do not need a project

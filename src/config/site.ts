@@ -2,40 +2,39 @@ import type { SiteConfig } from '~/types';
 
 /**
  * ============================================================
- *  THE ONE FILE TO EDIT FIRST
+ *  ЕДИНСТВЕННЫЙ ФАЙЛ, КОТОРЫЙ НУЖНО ИЗМЕНИТЬ СНАЧАЛА
  * ============================================================
  *
- * Everything here is demo content. Replace it with your own and the
- * header, footer, hero, contact page, metadata, structured data, RSS
- * feed and sitemap all follow.
+ * Здесь собран демонстрационный контент. Замените его своим — и данные
+ * в шапке, подвале, первом экране, на странице контактов, в метаданных,
+ * структурированных данных, RSS-ленте и карте сайта обновятся автоматически.
  *
- * The canonical URL lives in `astro.config.mjs` (`site`) and is read
- * back here through `import.meta.env.SITE`.
+ * Канонический URL задаётся в `astro.config.mjs` (параметр `site`), а сюда
+ * передаётся через `import.meta.env.SITE`.
  */
 export const siteConfig: SiteConfig = {
-  name: 'SWP Freelancer Portfolio',
+  name: 'Fullstack Typescript Developer | Демьянов Леонид | Портфолио',
 
   logo: {
     header: { src: '/images/header-logo.webp', width: 164, height: 58 },
     footer: { src: '/images/footer-logo.webp', width: 164, height: 58 },
   },
 
-  author: 'Robin Vale',
-  role: 'Art direction & interface design',
-  title: 'SWP Freelancer Portfolio — Art direction & interface design',
-  description:
-    'Portfolio of Robin Vale, an independent art director and interface designer working with small product teams on identity, interface and design systems.',
+  author: 'Демьянов Леоинид',
+  role: 'Fullstack Typescript Developer',
+  title: 'Fullstack Typescript Developer Portfolio',
+  description: 'Портфолио Леонида Демьянова, Fullstack-разработчика из Астаны. Создаю сайты, веб-приложения, интеграции и AI-автоматизации для цифровых продуктов и бизнеса.',
   url: import.meta.env.SITE ?? 'https://swp-freelancer-portfolio.vercel.app',
   ogImage: '/og-default.png',
-  locale: 'en',
+  locale: 'ru',
   themeColor: '#c8f14d',
 
   contact: {
-    email: 'hello@example.com',
-    phone: '+1 (000) 555-0100',
-    phoneHref: '+10005550100',
-    location: 'Remote — working across nine time zones',
-    availability: 'Two project slots open from September',
+    email: 'leonidemyanov@gmail.com',
+    phone: '+7 (778) 813-1612',
+    phoneHref: '+77788131612',
+    location: 'Астана',
+    availability: 'Доступен для работы на фрилансе и в штате',
     // Paste a Formspree / Web3Forms / Netlify endpoint here to make the
     // contact form live. See "Contact form" in the README.
     formEndpoint: '',
@@ -48,10 +47,9 @@ export const siteConfig: SiteConfig = {
     { label: 'Instagram', href: 'https://www.instagram.com/', icon: 'instagram' },
   ],
 
-  about:
-    'An independent art direction and design practice for teams of under twenty. Fewer clients, harder questions early, and a handover that does not quietly depend on me.',
+  about: 'Fullstack-разработчик из Астаны. Создаю сайты и веб-приложения, настраиваю интеграции и автоматизирую процессы с помощью AI. В работе ценю продуманные решения, понятный код и результат, который помогает продукту расти.',
 
-  copyrightHolder: 'SWP Freelancer Portfolio',
+  copyrightHolder: 'Fullstack Typescript Developer Portfolio',
 };
 
 export default siteConfig;

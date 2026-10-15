@@ -362,11 +362,16 @@
   display: flex;
   align-items: center;
   gap: 13px;
-  padding: 20px clamp(16px, 1.6vw, 24px);
+  padding: 14px clamp(12px, 1.2vw, 18px);
   border-right: 1.5px solid var(--swp-line);
   transition: background 0.3s var(--ease);
 }
-.cbox:last-child { border-right: 0; }
+.cbox:nth-child(2) { border-right: 0; }
+.cbox-email {
+  grid-column: 1 / -1;
+  border-top: 1.5px solid var(--swp-line);
+  border-right: 0;
+}
 .cbox:hover { background: var(--swp-mist); }
 .cbox i {
   width: 44px;
@@ -421,10 +426,10 @@
   .mock-b { margin: 0; }
 }
 @media (max-width: 560px) {
-  /* Two contact boxes side by side leave no room for a phone number. */
+  /* Stack contact methods on narrow screens so labels remain readable. */
   .collab-panel { grid-template-columns: 1fr; }
   .cbox { border-right: 0; border-bottom: 1.5px solid var(--swp-line); }
-  .cbox:last-child { border-bottom: 0; }
+  .cbox-email { grid-column: auto; border-top: 0; border-bottom: 0; }
 }
 
 /* ============================================================
@@ -436,10 +441,10 @@
   text-align: center;
   max-width: 26ch;
   margin: 0 auto clamp(38px, 4.6vw, 66px);
-  font-size: clamp(24px, 3.4vw, 42px);
+  font-size: clamp(22px, 3.1vw, 38px);
   line-height: 1.24;
   letter-spacing: -0.022em;
-  font-weight: 600;
+  font-weight: 500;
 }
 .band-h span { color: rgba(255, 255, 255, 0.45); }
 .band-row {
@@ -483,12 +488,12 @@
 .stat b {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(38px, 5.4vw, 64px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  font-size: clamp(19px, 2vw, 25px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
 }
-.stat span { font-size: 13.5px; color: rgba(255, 255, 255, 0.6); display: block; margin-top: 8px; }
+.stat span { font-size: 14px; color: rgba(255, 255, 255, 0.68); display: block; margin-top: 12px; line-height: 1.6; }
 
 @media (max-width: 880px) { .band-row { grid-template-columns: 1fr; } }
 @media (max-width: 560px) {
@@ -626,13 +631,13 @@
 .kit { background: var(--swp-mist); }
 .kit-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: clamp(12px, 1.4vw, 18px);
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: clamp(8px, 1vw, 14px);
 }
 .kit-item {
   background: #fff;
   border-radius: var(--r-md);
-  padding: 22px 20px;
+  padding: 18px 14px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -640,8 +645,23 @@
 }
 .kit-item:hover { transform: translateY(-4px); box-shadow: 0 22px 44px -34px rgba(16, 17, 16, 0.6); }
 .kit-item svg { color: var(--swp-graphite); }
-.kit-item b { font-family: var(--font-display); font-size: 16px; letter-spacing: -0.02em; }
+.kit-item b {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
 .kit-item span { font-size: 12.8px; color: var(--swp-slate); line-height: 1.5; }
+
+@media (max-width: 1100px) {
+  .kit-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .kit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 420px) {
+  .kit-grid { grid-template-columns: 1fr; }
+}
 
 /* ============================================================
    9. Work

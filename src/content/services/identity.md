@@ -18,6 +18,7 @@ process:
   - title: Package
     body: Asset kit, font setup and a short written guideline.
 order: 4
+draft: true
 ---
 
 ## For teams without a design department

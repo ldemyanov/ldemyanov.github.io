@@ -18,6 +18,7 @@ process:
   - title: Apply
     body: The language applied to the two or three surfaces that matter most, as a reference for the rest.
 order: 1
+draft: true
 ---
 
 ## What this is for

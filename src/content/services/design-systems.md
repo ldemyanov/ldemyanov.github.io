@@ -18,6 +18,7 @@ process:
   - title: Document
     body: Written rules, a contribution path, and a walkthrough with your engineers.
 order: 3
+draft: true
 ---
 
 ## Right-sized, not impressive

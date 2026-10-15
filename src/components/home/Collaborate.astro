@@ -33,14 +33,21 @@ import { collaborate } from '~/data/highlights';
       <p class="collab-sub">{collaborate.body}</p>
 
       <div class="collab-panel">
-        <a class="cbox" href={`tel:${siteConfig.contact.phoneHref}`}>
+        <a class="cbox" href="https://wa.me/77788131612" target="_blank" rel="noopener noreferrer">
           <i><Icon name="phone" /></i>
           <span>
-            <span class="cbox-lbl">Call the studio</span>
-            <span class="cbox-val">{siteConfig.contact.phone}</span>
+            <span class="cbox-lbl">WhatsApp</span>
+            <span class="cbox-val">Написать в WhatsApp</span>
           </span>
         </a>
-        <a class="cbox" href={`mailto:${siteConfig.contact.email}`}>
+        <a class="cbox" href="https://t.me/ldemyanov" target="_blank" rel="noopener noreferrer">
+          <i><Icon name="arrow" /></i>
+          <span>
+            <span class="cbox-lbl">Telegram</span>
+            <span class="cbox-val">@ldemyanov</span>
+          </span>
+        </a>
+        <a class="cbox cbox-email" href={`mailto:${siteConfig.contact.email}`}>
           <i><Icon name="mail" /></i>
           <span>
             <span class="cbox-lbl">Write to me</span>

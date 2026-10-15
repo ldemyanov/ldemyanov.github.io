@@ -115,10 +115,8 @@ export interface Client {
 }
 
 export interface Stat {
-  /** Numeric target used by the count-up animation. */
-  value: number;
-  /** Appended after the number, e.g. `+` or `%`. */
-  suffix?: string;
+  /** Short heading shown above the supporting text in the approach cards. */
+  value: string;
   label: string;
 }
 

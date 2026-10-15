@@ -18,6 +18,7 @@ process:
   - title: Hand over
     body: A walkthrough, documentation in the repository, and a month of questions answered.
 order: 5
+draft: true
 ---
 
 ## Getting edits out of the backlog

@@ -56,11 +56,13 @@ import { hero } from '~/data/highlights';
               <img src={src} alt="" width="76" height="76" loading="lazy" decoding="async" />
             ))
           }
-          <span class="stack-more">{hero.aside.stackBadge}</span>
+          {hero.aside.stackBadge && <span class="stack-more">{hero.aside.stackBadge}</span>}
         </div>
       </div>
-      <p class="hero-kpi">{hero.aside.kpi} <span>{hero.aside.kpiLabel}</span></p>
-      <p class="hero-note">{hero.aside.note}</p>
+      {hero.aside.kpi && hero.aside.kpiLabel && (
+        <p class="hero-kpi">{hero.aside.kpi} <span>{hero.aside.kpiLabel}</span></p>
+      )}
+      {hero.aside.note && <p class="hero-note">{hero.aside.note}</p>}
     </div>
   </div>
 
