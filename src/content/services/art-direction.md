@@ -1,10 +1,10 @@
 ---
-title: Art direction
+title: Арт-дирекшн
 icon: grid
 number: S/01
-excerpt: One visual language across product, site and deck, so what a customer sees on Tuesday matches what they saw on Monday.
-description: Art direction for teams whose product, marketing site and sales deck have drifted apart.
-tags: ['Direction', 'Language', 'Review']
+excerpt: Единый визуальный стиль для продукта, сайта и презентаций — чтобы бренд выглядел цельно во всех точках контакта.
+description: Арт-дирекшн для команд, которым важно объединить продукт, сайт и презентационные материалы общей визуальной системой.
+tags: ['Визуальный стиль', 'Арт-дирекшн', 'Ревью']
 features:
   - A single visual language documented in a form your team can apply without me
   - Photography, illustration and iconography direction with worked examples

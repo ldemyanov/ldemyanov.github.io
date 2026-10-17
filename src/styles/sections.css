@@ -23,16 +23,7 @@
   min-height: 82px;
 }
 
-/* The logo images carry the wordmark, so the brand link is just the image.
-   `width`/`height` on the <img> hold the ratio; the CSS sets the size. */
-.brand { display: inline-flex; align-items: center; flex: none; }
-.brand img { height: 38px; width: auto; }
-
-@media (max-width: 480px) {
-  .brand img { height: 32px; }
-}
-
-.nav { display: flex; align-items: center; gap: clamp(14px, 1.9vw, 30px); }
+.nav { display: flex; align-items: center; gap: clamp(14px, 1.9vw, 30px); margin-right: auto; }
 .nav a {
   font-size: 15px;
   font-weight: 500;
@@ -118,17 +109,21 @@
   gap: clamp(20px, 2.4vw, 52px);
   align-items: center;
 }
+@media (min-width: 1081px) {
+  .hero-grid { padding-top: 30px; padding-bottom: 60px; }
+}
 .hero-hi {
-  font-family: var(--font-display);
+  font-family: 'Unbounded', var(--font-display);
   font-size: clamp(16px, 1.4vw, 20px);
   font-weight: 500;
   color: var(--swp-graphite);
   margin-bottom: 14px;
 }
-.hero-name { margin-bottom: 22px; }
+.hero-name { margin-bottom: 22px; font-weight: 400; font-size: clamp(46px, 9.2vw, 85px); line-height: 1; }
 .hero-name em { font-style: normal; display: block; }
 .hero-copy {
   max-width: 40ch;
+  font-family: 'Unbounded', var(--font-display);
   font-size: 15.5px;
   line-height: 1.7;
   color: var(--swp-slate);
@@ -207,9 +202,11 @@
   border-left: 1.5px solid var(--swp-line);
   padding-left: clamp(18px, 1.7vw, 26px);
 }
-.hero-role { font-size: 15px; color: var(--swp-slate); line-height: 1.5; margin-bottom: 14px; }
+.hero-role { font-family: 'Unbounded', var(--font-display); font-size: 15px; color: var(--swp-slate); line-height: 1.5; margin-bottom: 14px; }
 .hero-title2 { margin-bottom: 30px; font-size: clamp(28px, 3.4vw, 46px); }
 .hero-proof { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.hero-tech-icons { display: flex; align-items: center; gap: 14px; }
+.hero-tech-icons img { display: block; width: 32px; height: 32px; object-fit: contain; }
 
 .stack { display: flex; }
 .stack img,
@@ -305,7 +302,7 @@
 .marquee-track {
   display: flex;
   align-items: center;
-  gap: clamp(34px, 4.5vw, 72px);
+  gap: clamp(78px, calc(9vw + 10px), 154px);
   width: max-content;
   animation: swp-slide 34s linear infinite;
 }
@@ -313,19 +310,16 @@
 @keyframes swp-slide { to { transform: translateX(-50%); } }
 
 .plogo {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 19px;
-  letter-spacing: -0.03em;
-  color: var(--swp-faint);
-  transition: color 0.3s var(--ease);
-  white-space: nowrap;
+  display: block;
+  flex: none;
+  width: auto;
+  height: 34px;
+  max-width: 260px;
+  object-fit: contain;
+  opacity: 0.72;
+  transition: opacity 0.3s var(--ease);
 }
-.plogo:hover { color: var(--swp-graphite); }
-.plogo svg { width: 26px; height: 26px; }
+.plogo:hover { opacity: 1; }
 
 @media (max-width: 640px) { .trust-lbl { display: none; } }
 
@@ -487,7 +481,7 @@
 .stat:first-child { border-left: 0; padding-left: 0; }
 .stat b {
   display: block;
-  font-family: var(--font-display);
+  font-family: 'Unbounded', var(--font-display);
   font-size: clamp(19px, 2vw, 25px);
   font-weight: 600;
   letter-spacing: -0.025em;
@@ -567,6 +561,11 @@
   grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
   gap: clamp(14px, 1.6vw, 22px);
 }
+@media (min-width: 1200px) {
+  #services .svc { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+  #services .svc-card { padding: 20px 18px; }
+  #services .svc-card h3 { font-size: 18px; }
+}
 .svc-card {
   border-radius: var(--r-md);
   padding: clamp(24px, 2.4vw, 34px);
@@ -588,6 +587,18 @@
 .svc-card:focus-within .svc-ic { background: var(--swp-lime); color: var(--swp-ink); }
 
 .svc-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.svc-card-meta { display: flex; align-items: center; gap: 10px; }
+.svc-new {
+  padding: 5px 10px;
+  border-radius: var(--r-pill);
+  background: var(--swp-lime);
+  color: var(--swp-ink);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
 .svc-ic {
   width: 52px;
   height: 52px;
@@ -669,8 +680,14 @@
 .work-filters { display: flex; flex-wrap: wrap; gap: 8px; }
 .work-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(16px, 1.9vw, 26px);
+}
+@media (max-width: 900px) {
+  .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .work-grid { grid-template-columns: 1fr; }
 }
 .work-card {
   display: block;
@@ -680,6 +697,7 @@
   position: relative;
 }
 .work-media { aspect-ratio: 4 / 3; overflow: hidden; background: var(--swp-line); position: relative; }
+.work-media-crop-bottom img { object-position: center top; }
 .work-media img,
 .work-media svg {
   width: 100%;
@@ -687,6 +705,7 @@
   object-fit: cover;
   transition: transform 0.8s var(--ease);
 }
+.work-media-contain img { object-fit: contain; background: #fff; }
 .work-card:hover .work-media img,
 .work-card:hover .work-media svg,
 .work-card:focus-visible .work-media img,
@@ -948,7 +967,7 @@
 }
 .cta > * { position: relative; }
 .cta h2 { max-width: 18ch; margin: 18px auto 20px; }
-.cta p { max-width: 50ch; margin: 0 auto 34px; color: rgba(16, 17, 16, 0.66); font-size: 16px; }
+.cta p { max-width: 60ch; margin: 0 auto 34px; color: rgba(16, 17, 16, 0.66); font-size: 16px; }
 .cta .eyebrow { color: rgba(16, 17, 16, 0.6); }
 .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .cta-ring { position: absolute; border-radius: 50%; border: 1.5px solid rgba(16, 17, 16, 0.14); }
@@ -961,12 +980,10 @@
 .ftr { background: var(--swp-ink); color: #fff; padding-top: clamp(52px, 5.4vw, 84px); }
 .ftr-top {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr));
   gap: clamp(26px, 3vw, 48px);
   padding-bottom: clamp(38px, 4vw, 60px);
 }
-.ftr-brand { display: inline-flex; align-items: center; margin-bottom: 18px; }
-.ftr-brand img { height: 46px; width: auto; }
 .ftr-about {
   font-size: 14.6px;
   color: rgba(255, 255, 255, 0.58);

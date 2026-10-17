@@ -1,10 +1,10 @@
 ---
-title: Second opinion
+title: Независимая оценка
 icon: spark
 number: S/06
-excerpt: One week of full attention on a single funnel, flow or launch, ending in a written verdict you can act on.
-description: A one-week review of a single flow, funnel or launch, delivered as a prioritised written verdict.
-tags: ['Teardown', 'Verdict', 'Priorities']
+excerpt: За неделю разбираю один сценарий, воронку или запуск и готовлю план улучшений с приоритетами.
+description: Независимый разбор одного пользовательского сценария, воронки или запуска с письменными рекомендациями.
+tags: ['Разбор', 'Рекомендации', 'Приоритеты']
 features:
   - One week, one flow, undivided attention
   - Findings ordered by what they are costing you, not by how easy they are

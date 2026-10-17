@@ -1,10 +1,10 @@
 ---
-title: Identity
+title: Айдентика
 icon: code
 number: S/04
-excerpt: Marks, type and colour scoped for a team that has no design department to maintain any of it.
-description: Identity design for small teams — a mark, a type scale and rules short enough that people read them.
-tags: ['Mark', 'Type', 'Guide']
+excerpt: Логотип, типографика и палитра с простыми правилами, которые команда сможет применять самостоятельно.
+description: "Айдентика для небольших команд: логотип, типографическая система и короткое руководство по использованию."
+tags: ['Логотип', 'Типографика', 'Руководство']
 features:
   - A primary mark with the two lockups you will actually use
   - A type scale named for its job, with a self-hosted font setup

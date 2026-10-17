@@ -1,14 +1,55 @@
 ---
 import Button from '../Button.astro';
 import SectionHeading from '../SectionHeading.astro';
-import ServiceCard from '../cards/ServiceCard.astro';
+import HomeServiceCard from '../cards/HomeServiceCard.astro';
 import { servicesHeading } from '~/data/highlights';
-import { getCollection } from 'astro:content';
-import { isVisible } from '~/lib/utils';
+import type { IconName } from '~/types';
 
-const services = (await getCollection('services'))
-  .filter(isVisible)
-  .sort((a, b) => a.data.order - b.data.order);
+const services: {
+  number: string;
+  icon: IconName;
+  title: string;
+  excerpt: string;
+  tags: string[];
+  isNew?: boolean;
+}[] = [
+  {
+    number: 'S/01',
+    icon: 'code',
+    title: 'Разработка веб-приложений, CRM и личных кабинетов',
+    excerpt: 'Создаю цифровые инструменты, которые упрощают работу с клиентами и внутренними процессами.',
+    tags: ['Веб-приложения', 'CRM', 'Личные кабинеты'],
+  },
+  {
+    number: 'S/02',
+    icon: 'device',
+    title: 'Разработка сайтов и интернет-магазинов',
+    excerpt: 'Помогаю представить продукт, привлекать клиентов и удобно продавать онлайн.',
+    tags: ['Интернет-магазины', 'Лендинги', 'Личные страницы'],
+  },
+  {
+    number: 'S/03',
+    icon: 'chart',
+    title: 'Автоматизация рутинных задач',
+    excerpt: 'Анализирую рутинные задачи и создаю гибкие решения, которые экономят ваше время.',
+    tags: ['Анализ процессов', 'Автоматизация', 'Экономия времени'],
+  },
+  {
+    number: 'S/04',
+    icon: 'layers',
+    title: 'Интеграции приложений и продуктов',
+    excerpt: 'Связываю приложения и продукты, чтобы данные и рабочие процессы работали согласованно.',
+    tags: ['Интеграции', 'Обмен данными', 'Единый процесс'],
+  },
+  {
+    number: 'S/05',
+    icon: 'spark',
+    title: 'Внедрение LLM-моделей',
+    excerpt: 'Там, где это приносит пользу, встраиваю языковые модели в процессы для автоматизации повторяющихся задач.',
+    tags: ['LLM', 'ИИ', 'Автоматизация'],
+    isNew: true,
+  },
+];
 ---
 
 <section class="wrap sec sec-top" id="services" aria-labelledby="svc-h">
@@ -19,7 +60,7 @@ const services = (await getCollection('services'))
   <div class="svc">
     {
       services.map((service, i) => (
-        <ServiceCard service={service} class:list={['rev', i % 3 > 0 && `rev-d${i % 3}`]} />
+        <HomeServiceCard {...service} class:list={['rev', i % 3 > 0 && `rev-d${i % 3}`]} />
       ))
     }
   </div>

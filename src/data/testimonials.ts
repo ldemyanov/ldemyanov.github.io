@@ -3,34 +3,34 @@ import type { Testimonial } from '~/types';
 export const testimonials: Testimonial[] = [
   {
     quote:
-      'We briefed three studios before this one. Robin spent the first week inside our support inbox rather than a design file, then showed us the two screens costing us signups. Setup completion moved forty-four points.',
+      'До этого мы обращались в три студии. В первую неделю Robin изучал обращения в поддержку, а не сразу открывал редактор макетов. Затем показал два экрана, из-за которых мы теряли регистрации. Доля завершённых настроек выросла на 44 процентных пункта.',
     name: 'Priya Raghunathan',
-    role: 'Co-founder, Brightsill',
+    role: 'Сооснователь Brightsill',
     avatar: '/images/avatar-02.webp',
-    avatarAlt: 'Portrait of Priya Raghunathan',
+    avatarAlt: 'Портрет Прии Рагхунатан',
     rating: 5,
   },
   {
     quote:
-      'The handover is the part that surprised me. Our two engineers built the entire marketing site from the component library in eight days and never once had to send a message about it.',
+      'Больше всего меня удивила передача проекта. Два наших разработчика собрали весь маркетинговый сайт из библиотеки компонентов за восемь дней и ни разу не обращались за пояснениями.',
     name: 'Tomas Berger',
-    role: 'CTO, Coalfield',
+    role: 'Технический директор Coalfield',
     avatar: '/images/avatar-01.webp',
-    avatarAlt: 'Portrait of Tomas Berger',
+    avatarAlt: 'Портрет Томаса Бергера',
     rating: 5,
   },
   {
     quote:
-      'Fixed price, weekly demos, and in week two we were told to cut a feature rather than design it. That single conversation saved us a full quarter of engineering.',
+      'Фиксированная стоимость, еженедельные показы результата, а уже на второй неделе нам предложили отказаться от функции вместо того, чтобы её разрабатывать. Этот разговор сэкономил нам целый квартал работы.',
     name: 'Elena Marchetti',
-    role: 'Head of Product, Petrichor',
+    role: 'Руководитель продукта Petrichor',
     avatar: '/images/avatar-03.webp',
-    avatarAlt: 'Portrait of Elena Marchetti',
+    avatarAlt: 'Портрет Елены Маркетти',
     rating: 5,
   },
 ];
 
 export const testimonialsHeading = {
-  eyebrow: 'In their words',
-  title: 'What clients say once the invoice is paid.',
+  eyebrow: 'Отзывы',
+  title: 'Что говорят клиенты о совместной работе.',
 };

@@ -41,6 +41,7 @@ h1, h2, h3, h4, h5 {
   letter-spacing: -0.028em;
   font-weight: 700;
 }
+h1, h2, h3, h4, h5, h6, .d1, .d2, .d3, .d4 { font-family: 'Unbounded', var(--font-display); }
 
 p { margin: 0; }
 ul { margin: 0; padding: 0; list-style: none; }
@@ -109,7 +110,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* ============================================================
    Type scale
    ============================================================ */
-.d1 { font-size: clamp(46px, 9.2vw, 120px); letter-spacing: -0.042em; line-height: 0.9; }
+.d1 { font-size: clamp(46px, 9.2vw, 100px); letter-spacing: -0.042em; line-height: 0.9; }
 .d2 { font-size: clamp(30px, 4.6vw, 58px); letter-spacing: -0.032em; line-height: 1.02; }
 .d3 { font-size: clamp(25px, 3vw, 40px); letter-spacing: -0.028em; }
 .d4 { font-size: clamp(19px, 1.7vw, 25px); letter-spacing: -0.02em; }

@@ -11,11 +11,12 @@ const projects = (await getCollection('projects'))
   .filter(isVisible)
   .filter((p) => p.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
+
 ---
 
 <section class="wrap sec" id="work" aria-labelledby="work-h">
   <SectionHeading class="rev" eyebrow={workHeading.eyebrow} title={workHeading.title} id="work-h">
-    <Button href="/work/" variant="outline">All projects</Button>
+      <Button href="/work/" variant="outline">Все проекты</Button>
   </SectionHeading>
 
   <div class="work-grid">

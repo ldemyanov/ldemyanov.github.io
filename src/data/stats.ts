@@ -1,15 +1,15 @@
 import type { Stat } from '~/types';
 
 export const stats: Stat[] = [
-  { value: 'Спецификация', label: 'Формулирую требования до начала разработки и автоматизирую процесс по Spec-Driven Development.' },
+  { value: 'Спецификация', label: 'Формулирую требования до начала разработки и автоматизирую процесс по методологии Spec-Driven Development.' },
   { value: 'Архитектура', label: 'Продумываю структуру проекта и слежу за тем, чтобы решения оставались понятными и поддерживаемыми.' },
-  { value: 'Качество', label: 'Провожу ревью кода, использую MCP, skills и агентов; при необходимости сам пишу код.' },
+  { value: 'Качество', label: 'Провожу ревью кода, использую MCP, навыки и агентов; при необходимости сам пишу код.' },
 ];
 
 /** Headline above the stats band, split so the tail can be dimmed. */
 export const statsHeading = {
-  lead: 'Использую Spec-Driven Development и автоматизирую рутинную работу.',
-  tail: 'Провожу тщательное ревью кода, слежу за архитектурой и применяю MCP, skills и агентов. Если нужно — самостоятельно берусь за реализацию.',
+  lead: 'Использую разработку на основе спецификаций и автоматизирую рутинную работу.',
+  tail: 'Тщательно проверяю код, слежу за архитектурой и применяю MCP, навыки и агентов. Если нужно — самостоятельно берусь за реализацию.',
 };
 
 /**
@@ -19,9 +19,9 @@ export const statsHeading = {
  */
 export const reel = {
   image: '/images/reel-poster.webp',
-  alt: 'Two people reviewing notes and sketches at a studio table',
+  alt: 'Два человека обсуждают заметки и эскизы за рабочим столом',
   width: 1000,
   height: 625,
   embedUrl: '',
-  label: 'Play the studio reel',
+  label: 'Воспроизвести видео о работе',
 };

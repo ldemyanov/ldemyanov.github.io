@@ -203,30 +203,9 @@ To change the typefaces, drop your WOFF2 files in `public/fonts/`, rewrite the
 and update the two `<link rel="preload">` tags in
 `src/layouts/BaseLayout.astro`.
 
-### Logo and favicon
+### Favicon
 
-The header and footer each render a logo image, configured in
-`src/config/site.ts`:
-
-```ts
-logo: {
-  header: { src: '/images/header-logo.webp', width: 164, height: 58 },
-  footer: { src: '/images/footer-logo.webp', width: 164, height: 58 },
-},
-```
-
-Two files rather than one because the header sits on white and the footer on
-near-black, so they need different colourways. Drop your own into
-`public/images/`, point the config at them, and set `width`/`height` to the
-files' real pixel dimensions — the CSS controls the displayed size (38px tall
-in the header, 46px in the footer, from `.brand img` and `.ftr-brand img` in
-`src/styles/sections.css`) while the attributes hold the ratio and stop the
-header shifting as it loads.
-
-The logo carries the wordmark, so no brand text is rendered next to it;
-`siteConfig.name` becomes the image's alt text instead.
-
-Separately, `public/favicon.svg` is an inline SVG monogram, also available as
+`public/favicon.svg` is an inline SVG monogram, also available as
 `#i-logo` in the icon sprite. If you change it, regenerate
 `apple-touch-icon.png`, `icon-192.png` and `icon-512.png` to match.
 
@@ -596,8 +575,8 @@ Bundled third-party assets keep their own licences:
 
 - **Photographs** — CC0 1.0 Public Domain (Pxhere, StockSnap)
 - **Space Grotesk, Inter Tight** — SIL Open Font License 1.1
-- **`header-logo.webp` / `footer-logo.webp`** — the demo brand's own marks,
-  not covered by the MIT grant. Replace them with your own logo.
+- **`header-logo.webp`** — the demo brand's own mark, not covered by the MIT
+  grant. Replace it with your own logo if you use it.
 
 [CREDITS.md](CREDITS.md) has the full accounting, including per-image source
 links and the OFL texts shipped alongside the fonts.

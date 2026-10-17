@@ -4,7 +4,6 @@
  * followed by whatever the page puts in the default slot.
  */
 import BaseLayout from './BaseLayout.astro';
-import Breadcrumbs from '~/components/Breadcrumbs.astro';
 
 interface Props {
   title: string;
@@ -13,7 +12,6 @@ interface Props {
   /** Visible page heading. Falls back to `title`. */
   heading?: string;
   intro?: string;
-  crumbs?: { label: string; href?: string }[];
   image?: string;
   imageAlt?: string;
   noindex?: boolean;
@@ -28,7 +26,6 @@ const {
   eyebrow,
   heading,
   intro,
-  crumbs,
   showHeader = true,
   ...seo
 } = Astro.props;
@@ -39,7 +36,6 @@ const {
     showHeader && (
       <section class="wrap phero">
         <div class="phero-in rev">
-          {crumbs && <Breadcrumbs items={crumbs} />}
           {eyebrow && <p class="eyebrow">{eyebrow}</p>}
           <h1 class="d1" style="font-size:clamp(38px,6.4vw,76px)">{heading ?? title}</h1>
           {intro && <p class="lead">{intro}</p>}

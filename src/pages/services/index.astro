@@ -1,8 +1,6 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 import ServiceCard from '~/components/cards/ServiceCard.astro';
-import Process from '~/components/home/Process.astro';
-import Faq from '~/components/home/Faq.astro';
 import Cta from '~/components/home/Cta.astro';
 import siteConfig from '~/config/site';
 import { getCollection } from 'astro:content';
@@ -16,8 +14,8 @@ const services = (await getCollection('services'))
 const jsonLd = graph([
   personSchema(siteConfig),
   breadcrumbSchema([
-    { name: 'Home', url: `${siteConfig.url}/` },
-    { name: 'Services', url: `${siteConfig.url}/services/` },
+    { name: 'Главная', url: `${siteConfig.url}/` },
+    { name: 'Услуги', url: `${siteConfig.url}/services/` },
   ]),
 ]);
 ---
@@ -28,7 +26,6 @@ const jsonLd = graph([
   eyebrow="Услуги"
   intro="Беру отдельные задачи на заказную разработку или подключаюсь к команде для долгосрочной работы над продуктом."
   description="Заказная разработка сайтов и приложений, интеграции, автоматизации и разработка в продуктовой команде."
-  crumbs={[{ label: 'Services' }]}
   jsonLd={jsonLd}
 >
   <section class="wrap sec" style="padding-top:0" aria-labelledby="svc-list-h">
@@ -46,7 +43,5 @@ const jsonLd = graph([
     </div>
   </section>
 
-  <Process />
-  <Faq />
   <Cta />
 </PageLayout>

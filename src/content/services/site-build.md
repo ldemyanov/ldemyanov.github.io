@@ -1,10 +1,10 @@
 ---
-title: Site build
+title: Разработка сайтов
 icon: chart
 number: S/05
-excerpt: Fast, accessible front-end templates your marketing lead can edit without filing a ticket with engineering.
-description: Design and front-end build for marketing sites, with a content model that keeps edits out of the engineering backlog.
-tags: ['Templates', 'Content model', 'Access']
+excerpt: Быстрые и доступные сайты, контент на которых команда может обновлять без помощи разработчика.
+description: Дизайн и фронтенд-разработка сайтов с удобной структурой контента и адаптивными шаблонами.
+tags: ['Шаблоны', 'Контент', 'Доступность']
 features:
   - A content model built from the blocks your team actually publishes
   - Static output that scores well without a performance sprint afterwards

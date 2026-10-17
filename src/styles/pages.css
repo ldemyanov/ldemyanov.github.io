@@ -81,6 +81,8 @@
 }
 .case-media img,
 .case-media svg { width: 100%; height: 100%; object-fit: cover; }
+.case-media-sbercraft { aspect-ratio: auto; display: flex; justify-content: center; }
+.case-media-sbercraft img { width: auto; height: auto; max-width: 100%; object-fit: contain; }
 
 .case-grid {
   display: grid;

@@ -2,17 +2,14 @@
 import { clients, clientsLabel } from '~/data/clients';
 ---
 
-<section class="wrap trust" aria-label="Selected clients">
+<section class="wrap trust" aria-label="Команды и компании">
   <div class="trust-in">
     <p class="trust-lbl">{clientsLabel}</p>
     <div class="marquee">
       <div class="marquee-track" id="mtrack">
         {
           clients.map((client) => (
-            <span class="plogo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" set:html={client.shape} />
-              {client.name}
-            </span>
+            <img class="plogo" src={client.logo} alt={client.name} width="201" height="50" loading="lazy" decoding="async" />
           ))
         }
       </div>

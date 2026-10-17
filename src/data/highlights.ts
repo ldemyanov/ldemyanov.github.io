@@ -14,13 +14,13 @@ export const hero = {
   ctaHref: '/contact/',
   photo: {
     src: '/photo/LeonidDemyanov.webp',
-    alt: 'Robin Vale, art director, photographed against a plain studio wall',
+    alt: 'Портрет Леонида Демьянова на нейтральном фоне',
     width: 960,
     height: 1210,
   },
   aside: {
     roleLine: ['Разрабатываю сайты и ПО с 2018 года.', '4 года опыта работы в найме'],
-    title: ['Fullstack', 'Typescript Developer'],
+    title: ['Fullstack Typescript', 'Developer'],
     /** Small avatar stack — decorative, so the images carry empty alt text. */
     stack: ['/images/avatar-02.webp', '/images/avatar-01.webp', '/images/avatar-03.webp'],
     stackBadge: undefined as string | undefined,
@@ -34,8 +34,8 @@ export const collaborate = {
   eyebrow: 'Поработаем вместе?',
   title: 'Помогаю команде справляться со сложными задачами — от идеи до готового решения.',
   body: 'Готов подключиться к командной разработке или самостоятельно реализовать проект под ключ — от идеи до запуска.',
-  badge: 'Independent since 2011',
-  ctaLabel: 'Send me the brief',
+  badge: 'Независимый разработчик с 2011 года',
+  ctaLabel: 'Обсудить проект',
   ctaHref: '/contact/',
   /**
    * The staggered pair beside the copy. Swap these for the bundled SVG
@@ -45,13 +45,13 @@ export const collaborate = {
   images: [
     {
       src: '/photo/SpaceCraft.webp',
-      alt: 'Two colleagues standing in a bright office, reviewing work together on a tablet',
+      alt: 'Коллеги обсуждают работу за планшетом в светлом офисе',
       width: 760,
       height: 760,
     },
     {
       src: '/photo/Meeting.webp',
-      alt: 'Two colleagues talking over an open laptop at a meeting table',
+      alt: 'Коллеги обсуждают проект за ноутбуком',
       width: 760,
       height: 760,
     },
@@ -69,12 +69,12 @@ export const about = {
   ],
   image: {
     src: '/images/about-studio.webp',
-    alt: 'Designers arranging sticky notes and printed layouts across a studio table',
+    alt: 'Дизайнеры раскладывают стикеры и макеты на рабочем столе',
     width: 900,
     height: 954,
   },
   badge: {
-    value: 'Fullstack',
+    value: 'Полный цикл',
     label: 'От интерфейса и API до баз данных, интеграций и автоматизации.',
   },
   ctaLabel: 'Мои проекты',
@@ -89,19 +89,12 @@ export const servicesHeading = {
 };
 
 export const workHeading = {
-  eyebrow: 'Selected work',
-  title: 'Six projects, six different arguments.',
-};
-
-export const journalHeading = {
-  eyebrow: 'Notebook',
-  title: 'Things I keep having to explain.',
-  ctaLabel: 'Every article',
-  ctaHref: '/journal/',
+  eyebrow: 'Избранные проекты',
+  title: 'Проекты, над которыми я работал.',
 };
 
 export const cta = {
-  title: 'Have you got something that deserves doing properly?',
-  body: 'Tell me what is broken, who it is breaking for, and what happens if it stays that way. That is enough for me to come back with a scope and a number.',
-  primaryLabel: 'Send the brief',
+  title: 'Есть задача, которую нужно решить качественно?',
+  body: 'Расскажите, что нужно сделать, для кого и какой результат ожидаете. Этого достаточно, чтобы обсудить объём работы и стоимость.',
+  primaryLabel: 'Обсудить проект',
 };

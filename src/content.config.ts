@@ -26,6 +26,7 @@ const projects = defineCollection({
     /** Shown on the card and in the case-study header. */
     client: z.string(),
     year: z.string(),
+    period: z.string().optional(),
     /** Drives the filter chips on /work. */
     category: z.enum(['Product', 'Brand', 'Web']),
     /** One line under the title on cards. */

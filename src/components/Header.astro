@@ -1,7 +1,6 @@
 ---
 import Icon from './Icon.astro';
 import Button from './Button.astro';
-import siteConfig from '~/config/site';
 import { primaryNav, mobileExtraNav } from '~/data/navigation';
 
 const path = Astro.url.pathname;
@@ -22,18 +21,7 @@ function target(href: string, anchor?: string) {
 
 <header class="hdr" id="top">
   <div class="wrap hdr-in">
-    <a class="brand" href="/">
-      <img
-        src={siteConfig.logo.header.src}
-        alt={`${siteConfig.name} — home`}
-        width={siteConfig.logo.header.width}
-        height={siteConfig.logo.header.height}
-        fetchpriority="high"
-        decoding="async"
-      />
-    </a>
-
-    <nav class="nav" aria-label="Primary">
+    <nav class="nav" aria-label="Основная навигация">
       {
         primaryNav.map((item) => {
           const s = state(item.href);
@@ -50,15 +38,15 @@ function target(href: string, anchor?: string) {
       }
     </nav>
 
-    <Button href="/work/" variant="ink" class="hdr-cta">See the work</Button>
+    <Button href="/work/" variant="ink" class="hdr-cta">Смотреть работы</Button>
 
-    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav">
       <Icon name="menu" />
     </button>
   </div>
 
   <div class="mnav" id="mnav">
-    <nav aria-label="Mobile">
+    <nav aria-label="Мобильная навигация">
       {
         [...primaryNav, ...mobileExtraNav].map((item) => {
           const s = state(item.href);
@@ -70,7 +58,7 @@ function target(href: string, anchor?: string) {
         })
       }
     </nav>
-    <Button href="/contact/" variant="ink">Send the brief</Button>
+    <Button href="/contact/" variant="ink">Обсудить проект</Button>
   </div>
 </header>
 
@@ -79,8 +67,8 @@ function target(href: string, anchor?: string) {
   const panel = document.getElementById('mnav');
 
   if (burger && panel) {
-    const OPEN_LABEL = 'Open menu';
-    const CLOSE_LABEL = 'Close menu';
+    const OPEN_LABEL = 'Открыть меню';
+    const CLOSE_LABEL = 'Закрыть меню';
 
     const setIcon = (open: boolean) => {
       const use = burger.querySelector('use');

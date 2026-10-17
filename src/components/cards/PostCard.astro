@@ -5,14 +5,19 @@ import type { CollectionEntry } from 'astro:content';
 
 interface Props {
   post: CollectionEntry<'blog'>;
+  title?: string;
+  description?: string;
   eager?: boolean;
   class?: string;
   /** Use `h2` on listing pages that have their own `h1`. */
   headingLevel?: 'h2' | 'h3';
 }
 
-const { post, eager = false, class: className, headingLevel: Heading = 'h3' } = Astro.props;
-const { title, description, category, readingTime, pubDate, image } = post.data;
+const { post, title: titleOverride, description: descriptionOverride, eager = false, class: className, headingLevel: Heading = 'h3' } = Astro.props;
+const { title: sourceTitle, description: sourceDescription, category, readingTime, pubDate, image } = post.data;
+const title = titleOverride ?? sourceTitle;
+const description = descriptionOverride ?? sourceDescription;
+const categoryLabels: Record<string, string> = { Product: 'Продукт', Practice: 'Практика', Systems: 'Системы' };
 const href = `/journal/${post.id}/`;
 ---
 
@@ -28,14 +33,14 @@ const href = `/journal/${post.id}/`;
     />
   </a>
   <div class="post-meta">
-    <em>{category}</em>
-    <span>{readingTime}</span>
+    <em>{categoryLabels[category] ?? category}</em>
+    <span>{readingTime.replace('min read', 'мин чтения')}</span>
     <span aria-hidden="true">&middot;</span>
-    <time datetime={isoDate(pubDate)}>{formatDate(pubDate)}</time>
+    <time datetime={isoDate(pubDate)}>{formatDate(pubDate, 'ru-RU')}</time>
   </div>
   <Heading><a href={href}>{title}</a></Heading>
   <p>{description}</p>
   <a class="post-link" href={href} tabindex="-1" aria-hidden="true">
-    Read article <Icon name="arrow" class="ic-sm" />
+    Читать статью <Icon name="arrow" class="ic-sm" />
   </a>
 </article>

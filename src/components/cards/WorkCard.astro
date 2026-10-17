@@ -5,13 +5,18 @@ import type { CollectionEntry } from 'astro:content';
 
 interface Props {
   project: CollectionEntry<'projects'>;
+  title?: string;
+  excerpt?: string;
+  imageAlt?: string;
   /** Cards above the fold can skip lazy loading. */
   eager?: boolean;
   class?: string;
 }
 
-const { project, eager = false, class: className } = Astro.props;
-const { title, excerpt, year, category, image, artwork } = project.data;
+const { project, title: titleOverride, excerpt: excerptOverride, imageAlt, eager = false, class: className } = Astro.props;
+const { title: sourceTitle, excerpt: sourceExcerpt, year, category, image, artwork } = project.data;
+const title = titleOverride ?? sourceTitle;
+const excerpt = excerptOverride ?? sourceExcerpt;
 ---
 
 <a
@@ -19,23 +24,31 @@ const { title, excerpt, year, category, image, artwork } = project.data;
   href={`/work/${project.id}/`}
   data-category={category}
 >
-  <div class="work-media">
-    <span class="work-year">{year}</span>
-    {
-      image ? (
-        <img
-          src={image.src}
-          alt={image.alt}
-          width={image.width}
-          height={image.height}
-          loading={eager ? 'eager' : 'lazy'}
-          decoding="async"
-        />
-      ) : artwork ? (
-        <Artwork name={artwork} label={`${title} — project artwork`} />
-      ) : null
-    }
-  </div>
+  {
+    (image || artwork) && (
+      <div class:list={[
+        'work-media',
+        project.id === 'forus-site' && 'work-media-crop-bottom',
+        ['geological-map', 'forus-client-account'].includes(project.id) && 'work-media-contain',
+      ]}>
+        <span class="work-year">{year}</span>
+        {
+          image ? (
+            <img
+              src={image.src}
+              alt={imageAlt ?? image.alt}
+              width={image.width}
+              height={image.height}
+              loading={eager ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+          ) : artwork ? (
+            <Artwork name={artwork} label={`${title} — иллюстрация проекта`} />
+          ) : null
+        }
+      </div>
+    )
+  }
   <div class="work-body">
     <div>
       <h3>{title}</h3>

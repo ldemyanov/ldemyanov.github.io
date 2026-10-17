@@ -2,41 +2,41 @@ import type { FaqItem } from '~/types';
 
 export const faq: FaqItem[] = [
   {
-    question: 'How long does a project usually take?',
+    question: 'Сколько обычно длится проект?',
     answer:
-      'A full product engagement runs six weeks end to end. An identity is three to four. A second opinion is one week. If your deadline is tighter than that, say so early and you will get an honest answer about whether it fits.',
+      'Полная работа над продуктом занимает около шести недель, разработка айдентики — три-четыре недели, независимая оценка — одну неделю. Если сроки короче, скажите об этом заранее — я честно оценю, успеем ли.',
   },
   {
-    question: 'Is the price fixed?',
+    question: 'Стоимость фиксированная?',
     answer:
-      'Yes, wherever the scope is defined. One number, one payment schedule and a written list of what sits inside it. Anything outside becomes a conversation before work starts, never a surprise line on an invoice.',
+      'Да, если объём работ можно определить заранее. Фиксируем стоимость, график оплаты и список задач. Всё, что выходит за рамки, сначала обсуждаем — никаких неожиданных пунктов в счёте.',
   },
   {
-    question: 'Can you work alongside our engineers?',
+    question: 'Вы сможете работать вместе с нашими разработчиками?',
     answer:
-      'That is the normal arrangement. I join your stand-ups, write specs in whatever format your team already uses, and stay reachable for a month after handover so questions get answered rather than guessed at.',
+      'Да, обычно работа проходит именно так. Подключаюсь к командным встречам, оформляю спецификации в привычном для команды формате и остаюсь на связи месяц после передачи проекта.',
   },
   {
-    question: 'What lands in my hands at the end?',
+    question: 'Что я получу в конце работы?',
     answer:
-      'Source files, a component library with every state documented, a token sheet, exported assets and a written spec covering behaviour and edge cases. Build engagements also include the front-end templates and a configured theme.',
+      'Исходные файлы, библиотеку компонентов с описанием состояний, набор токенов, экспортированные материалы и спецификацию с логикой работы и крайними случаями. В проектах по разработке также передаю фронтенд-шаблоны и настроенную тему.',
   },
   {
-    question: 'Do you take small pieces of work?',
+    question: 'Вы берётесь за небольшие задачи?',
     answer:
-      'Sometimes. A single landing page, a pricing rewrite or a one-week review all fit comfortably. Anything larger tends to work better as a short sprint than as hours scattered across a quarter.',
+      'Да. Можно заказать отдельный лендинг, доработку страницы с ценами или недельный аудит. Более крупные задачи обычно удобнее выполнять коротким спринтом.',
   },
   {
-    question: 'Who owns the work at the end?',
+    question: 'Кому принадлежат результаты работы?',
     answer:
-      'You do, completely, once the final payment clears. Files transfer into your accounts rather than living in mine. I only ask permission to show the work publicly, and I will keep it private if you would rather.',
+      'Вам — после полной оплаты. Передаю файлы в ваши аккаунты. Для публикации проекта я отдельно попрошу разрешение; если вы предпочитаете сохранить его в тайне, так и сделаю.',
   },
 ];
 
 export const faqHeading = {
-  eyebrow: 'FAQ',
-  title: 'Asked before nearly every project.',
-  asideTitle: 'Not sure yet?',
+  eyebrow: 'Частые вопросы',
+  title: 'FAQ',
+  asideTitle: 'Остались вопросы?',
   asideBody:
-    'Send a paragraph about what is going wrong. If I am not right for it I will say so and name someone who is, usually the same day.',
+    'Коротко опишите задачу. Если я не подхожу для проекта, скажу об этом и постараюсь порекомендовать подходящего специалиста.',
 };

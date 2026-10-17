@@ -63,17 +63,6 @@ Both were contributed by the photographer **directmedia**.
 
 Both were cropped and re-encoded as WebP for this theme.
 
-## Brand logos
-
-`public/images/header-logo.webp` and `public/images/footer-logo.webp` are the
-demo brand's own marks, supplied by the theme author. They are **not** covered
-by the MIT grant over the rest of the theme — a logo is a trademark, and the
-MIT licence does not transfer one.
-
-If you are using this theme for your own site, replace both files with your own
-logo and update `logo` in `src/config/site.ts`. See *Logo and favicon* in the
-README.
-
 If you keep the demo photographs, nothing is required of you. If you replace
 them — which you should, for a real portfolio — delete the rows above and
 record whatever your own images need.

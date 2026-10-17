@@ -1,10 +1,10 @@
 ---
-title: Interface design
+title: Дизайн интерфейсов
 icon: layers
 number: S/02
-excerpt: Screens with the awkward states drawn too — half-empty, mid-upload, wrong password, four hundred rows and counting.
-description: End-to-end interface design including the loading, empty and error states most projects skip.
-tags: ['Flows', 'States', 'Specs']
+excerpt: Прорабатываю не только основные экраны, но и пустые состояния, загрузку, ошибки и длинные списки.
+description: "Полный цикл дизайна интерфейса: сценарии, экраны, состояния загрузки, пустые состояния и ошибки."
+tags: ['Сценарии', 'Состояния', 'Спецификации']
 features:
   - Full flows drawn with real content, not lorem ipsum
   - Every state designed — empty, loading, partial, error, overflowing

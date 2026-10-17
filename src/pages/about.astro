@@ -2,9 +2,6 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import About from '~/components/home/About.astro';
 import Toolkit from '~/components/home/Toolkit.astro';
-import Process from '~/components/home/Process.astro';
-import Awards from '~/components/home/Awards.astro';
-import Testimonials from '~/components/home/Testimonials.astro';
 import StatsBand from '~/components/home/StatsBand.astro';
 import Cta from '~/components/home/Cta.astro';
 import siteConfig from '~/config/site';
@@ -13,26 +10,22 @@ import { graph, personSchema, breadcrumbSchema } from '~/lib/jsonld';
 const jsonLd = graph([
   personSchema(siteConfig),
   breadcrumbSchema([
-    { name: 'Home', url: `${siteConfig.url}/` },
-    { name: 'About', url: `${siteConfig.url}/about/` },
+    { name: 'Главная', url: `${siteConfig.url}/` },
+    { name: 'Обо мне', url: `${siteConfig.url}/about/` },
   ]),
 ]);
 ---
 
 <PageLayout
-  title="About"
-  heading={`Fifteen years, and the same lesson keeps turning up.`}
-  eyebrow="About"
-  intro={`${siteConfig.author} is an independent art director and interface designer. Fewer clients, harder questions in week one, and a handover that does not quietly depend on one person.`}
-  description={`About ${siteConfig.author} — an independent art director and interface designer working with small product teams.`}
-  crumbs={[{ label: 'About' }]}
+  title="Обо мне"
+  heading="Обо мне"
+  eyebrow="Обо мне"
+  intro="Я — Леонид Демьянов, fullstack-разработчик на TypeScript с 4 годами коммерческого опыта. Создаю сайты и веб-приложения для бизнеса и продуктовых команд — от идеи и архитектуры до готового решения."
+  description="Леонид Демьянов — fullstack-разработчик на TypeScript из Астаны. Опыт, проекты и навыки в разработке сайтов и веб-приложений."
   jsonLd={jsonLd}
 >
   <About headingLevel="h2" id="background" />
   <StatsBand />
   <Toolkit />
-  <Process />
-  <Awards />
-  <Testimonials />
   <Cta />
 </PageLayout>

@@ -1,0 +1,31 @@
+---
+import Icon from '../Icon.astro';
+import type { IconName } from '~/types';
+
+interface Props {
+  class?: string;
+  number: string;
+  icon: IconName;
+  title: string;
+  excerpt: string;
+  tags: string[];
+  isNew?: boolean;
+}
+
+const { number, icon, title, excerpt, tags, isNew = false, class: className } = Astro.props;
+---
+
+<article class:list={['svc-card', className]}>
+  <div class="svc-top">
+    <span class="svc-ic"><Icon name={icon} class="ic-lg" /></span>
+    <div class="svc-card-meta">
+      <span class="svc-num">{number}</span>
+      {isNew && <span class="svc-new">Новое</span>}
+    </div>
+  </div>
+  <h3><a class="stretch" href="/contact/">{title}</a></h3>
+  <p class="muted">{excerpt}</p>
+  <div class="svc-tags">
+    {tags.map((tag) => <span>{tag}</span>)}
+  </div>
+</article>

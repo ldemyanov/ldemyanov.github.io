@@ -2,7 +2,6 @@
 import type { GetStaticPaths } from 'astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '~/layouts/BaseLayout.astro';
-import Breadcrumbs from '~/components/Breadcrumbs.astro';
 import Artwork from '~/components/art/Artwork.astro';
 import Button from '~/components/Button.astro';
 import Cta from '~/components/home/Cta.astro';
@@ -13,6 +12,7 @@ import { graph, breadcrumbSchema, personSchema } from '~/lib/jsonld';
 export const getStaticPaths = (async () => {
   const projects = (await getCollection('projects'))
     .filter(isVisible)
+    .filter((project) => !project.data.draft)
     .sort((a, b) => a.data.order - b.data.order);
 
   return projects.map((project, i) => ({
@@ -32,12 +32,13 @@ interface Props {
 const { project, next } = Astro.props;
 const { Content } = await render(project);
 const d = project.data;
+const projectPeriod = d.period ?? (project.id === 'sbercraft' ? 'Апрель 2024 — Сентябрь 2026' : undefined);
 
 const jsonLd = graph([
   personSchema(siteConfig),
   breadcrumbSchema([
-    { name: 'Home', url: `${siteConfig.url}/` },
-    { name: 'Work', url: `${siteConfig.url}/work/` },
+    { name: 'Главная', url: `${siteConfig.url}/` },
+    { name: 'Работы', url: `${siteConfig.url}/work/` },
     { name: d.title, url: `${siteConfig.url}/work/${project.id}/` },
   ]),
 ]);
@@ -53,30 +54,33 @@ const jsonLd = graph([
   <article>
     <section class="wrap phero">
       <div class="rev">
-        <Breadcrumbs items={[{ label: 'Work', href: '/work/' }, { label: d.title }]} />
-        <p class="eyebrow">{d.category} &middot; {d.year}</p>
+        <p class="eyebrow">{d.category}{d.year && ` · ${d.year}`}</p>
         <h1 class="d1" style="font-size:clamp(38px,6.4vw,76px);margin:16px 0 20px">{d.title}</h1>
         <p class="lead" style="max-width:58ch">{d.description}</p>
       </div>
     </section>
 
     <section class="wrap" style="padding-bottom:var(--sec)">
-      <div class="case-media rev">
-        {
-          d.image ? (
-            <img
-              src={d.image.src}
-              alt={d.image.alt}
-              width={d.image.width}
-              height={d.image.height}
-              fetchpriority="high"
-              decoding="async"
-            />
-          ) : d.artwork ? (
-            <Artwork name={d.artwork} label={`${d.title} — project artwork`} />
-          ) : null
-        }
-      </div>
+      {
+        (d.image || d.artwork) && (
+          <div class:list={['case-media', ['sbercraft', 'forus-site', 'geological-map', 'forus-client-account'].includes(project.id) && 'case-media-sbercraft', 'rev']}>
+            {
+              d.image ? (
+                <img
+                  src={d.image.src}
+                  alt={d.image.alt}
+                  width={d.image.width}
+                  height={d.image.height}
+                  fetchpriority="high"
+                  decoding="async"
+                />
+              ) : d.artwork ? (
+                <Artwork name={d.artwork} label={`${d.title} — project artwork`} />
+              ) : null
+            }
+          </div>
+        )
+      }
 
       <div class="case-grid">
         <div class="rev">
@@ -96,19 +100,21 @@ const jsonLd = graph([
           }
         </div>
 
-        <aside class="case-aside rev rev-d1" aria-label="Project details">
+        <aside class="case-aside rev rev-d1" aria-label="Информация о проекте">
           <div class="case-fact">
-            <b>Client</b>
+            <b>Клиент</b>
             <p>{d.client}</p>
           </div>
-          <div class="case-fact">
-            <b>Year</b>
-            <p>{d.year}</p>
-          </div>
+          {(projectPeriod || d.year) && (
+            <div class="case-fact">
+              <b>{projectPeriod ? 'Время' : 'Год'}</b>
+              <p>{projectPeriod ?? d.year}</p>
+            </div>
+          )}
           {
             d.services.length > 0 && (
               <div class="case-fact">
-                <b>Services</b>
+                <b>Услуги</b>
                 <ul>{d.services.map((s) => <li>{s}</li>)}</ul>
               </div>
             )
@@ -116,14 +122,14 @@ const jsonLd = graph([
           {
             d.technologies.length > 0 && (
               <div class="case-fact">
-                <b>Tools</b>
+                <b>Технологии</b>
                 <div>{d.technologies.map((t) => <span class="pill">{t}</span>)}</div>
               </div>
             )
           }
           {
             d.externalUrl && (
-              <Button href={d.externalUrl} variant="outline">Visit the site</Button>
+              <Button href={d.externalUrl} variant="outline">Открыть сайт</Button>
             )
           }
         </aside>
@@ -131,12 +137,12 @@ const jsonLd = graph([
 
       <div class="nextprev">
         <a href={`/work/${next.id}/`}>
-          <b>Next project</b>
+          <b>Следующий проект</b>
           <span>{next.data.title}</span>
         </a>
         <a href="/work/">
-          <b>Everything else</b>
-          <span>All projects</span>
+          <b>Другие проекты</b>
+          <span>Все проекты</span>
         </a>
       </div>
     </section>

@@ -3,17 +3,17 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import Button from '~/components/Button.astro';
 ---
 
-<BaseLayout title="Page not found" description="That page does not exist." noindex>
+<BaseLayout title="Страница не найдена" description="Такой страницы не существует." noindex>
   <section class="wrap nf">
     <p class="nf-code" aria-hidden="true">404</p>
-    <h1 class="d2">This page went the way of the fourth rebrand.</h1>
+    <h1 class="d2">Похоже, эта страница затерялась.</h1>
     <p>
-      The link is broken, the page moved, or it never existed. The work, the journal and a
-      way to get in touch are all still where you left them.
+      Ссылка устарела, страница переехала или её никогда не существовало. Проекты, блог и
+      контакты доступны по ссылкам ниже.
     </p>
     <div class="nf-actions">
-      <Button href="/" variant="lime">Back to the homepage</Button>
-      <Button href="/work/" variant="outline">See the work</Button>
+      <Button href="/" variant="lime">На главную</Button>
+      <Button href="/work/" variant="outline">Смотреть работы</Button>
     </div>
   </section>
 </BaseLayout>

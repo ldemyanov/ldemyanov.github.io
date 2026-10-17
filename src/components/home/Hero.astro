@@ -3,6 +3,15 @@ import Icon from '../Icon.astro';
 import Button from '../Button.astro';
 import siteConfig from '~/config/site';
 import { hero } from '~/data/highlights';
+
+const techIcons = [
+  { src: '/photo/tech/react.svg', name: 'React' },
+  { src: '/photo/tech/nextjs.svg', name: 'Next.js' },
+  { src: '/photo/tech/nestjs.svg', name: 'NestJS' },
+  { src: '/photo/tech/prisma.svg', name: 'Prisma' },
+  { src: '/photo/tech/docker.svg', name: 'Docker' },
+  { src: '/photo/tech/openai.svg', name: 'OpenAI' },
+];
 ---
 
 <section class="wrap hero" aria-labelledby="hero-h">
@@ -50,13 +59,10 @@ import { hero } from '~/data/highlights';
         {hero.aside.title[0]}<br />{hero.aside.title[1]}
       </h2>
       <div class="hero-proof">
-        <div class="stack" aria-hidden="true">
-          {
-            hero.aside.stack.map((src) => (
-              <img src={src} alt="" width="76" height="76" loading="lazy" decoding="async" />
-            ))
-          }
-          {hero.aside.stackBadge && <span class="stack-more">{hero.aside.stackBadge}</span>}
+        <div class="hero-tech-icons" aria-label="Технологии: React, Next.js, NestJS, Prisma, Docker и OpenAI">
+          {techIcons.map(({ src, name }) => (
+            <img src={src} alt={name} title={name} width="32" height="32" loading="lazy" decoding="async" />
+          ))}
         </div>
       </div>
       {hero.aside.kpi && hero.aside.kpiLabel && (

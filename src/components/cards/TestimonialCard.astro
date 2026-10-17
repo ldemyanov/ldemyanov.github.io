@@ -13,7 +13,7 @@ const { quote, name, role, avatar, avatarAlt, rating } = testimonial;
 
 <article class:list={['tst-card', className]}>
   <div class="tst-top">
-    <div class="stars" role="img" aria-label={`Rated ${rating} out of 5`}>
+    <div class="stars" role="img" aria-label={`Оценка: ${rating} из 5`}>
       {Array.from({ length: rating }).map(() => <Icon name="star" class="ic-sm" />)}
     </div>
     <Icon name="quote" class="ic-lg muted" style="opacity:.28" />

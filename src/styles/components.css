@@ -171,18 +171,3 @@
 }
 .totop.on { opacity: 1; pointer-events: auto; transform: none; }
 
-/* ---- Breadcrumbs ------------------------------------------ */
-.crumbs {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  font-size: 13.4px;
-  color: var(--swp-slate);
-  margin-bottom: 20px;
-}
-.crumbs a { transition: color 0.25s var(--ease); }
-.crumbs a:hover { color: var(--swp-ink); }
-.crumbs li { display: inline-flex; align-items: center; gap: 8px; }
-.crumbs li + li::before { content: '/'; color: var(--swp-line); }
-.crumbs [aria-current='page'] { color: var(--swp-ink); font-weight: 500; }

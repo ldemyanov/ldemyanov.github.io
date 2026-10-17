@@ -13,17 +13,12 @@ import type { SiteConfig } from '~/types';
  * передаётся через `import.meta.env.SITE`.
  */
 export const siteConfig: SiteConfig = {
-  name: 'Fullstack Typescript Developer | Демьянов Леонид | Портфолио',
+  name: 'Портфолио Леонида Демьянова',
 
-  logo: {
-    header: { src: '/images/header-logo.webp', width: 164, height: 58 },
-    footer: { src: '/images/footer-logo.webp', width: 164, height: 58 },
-  },
-
-  author: 'Демьянов Леоинид',
-  role: 'Fullstack Typescript Developer',
-  title: 'Fullstack Typescript Developer Portfolio',
-  description: 'Портфолио Леонида Демьянова, Fullstack-разработчика из Астаны. Создаю сайты, веб-приложения, интеграции и AI-автоматизации для цифровых продуктов и бизнеса.',
+  author: 'Демьянов Леонид',
+  role: 'Fullstack-разработчик на TypeScript',
+  title: 'Портфолио Fullstack-разработчика',
+  description: 'Портфолио Леонида Демьянова, Fullstack-разработчика из Астаны. Создаю сайты, веб-приложения, интеграции и решения на основе ИИ для цифровых продуктов и бизнеса.',
   url: import.meta.env.SITE ?? 'https://swp-freelancer-portfolio.vercel.app',
   ogImage: '/og-default.png',
   locale: 'ru',
@@ -41,15 +36,12 @@ export const siteConfig: SiteConfig = {
   },
 
   social: [
-    { label: 'Dribbble', href: 'https://dribbble.com/', icon: 'dribbble' },
-    { label: 'Behance', href: 'https://www.behance.net/', icon: 'behance' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/', icon: 'linkedin' },
-    { label: 'Instagram', href: 'https://www.instagram.com/', icon: 'instagram' },
+    { label: 'GitHub', href: 'https://github.com/ldemyanov', icon: 'github' },
   ],
 
-  about: 'Fullstack-разработчик из Астаны. Создаю сайты и веб-приложения, настраиваю интеграции и автоматизирую процессы с помощью AI. В работе ценю продуманные решения, понятный код и результат, который помогает продукту расти.',
+  about: 'Fullstack-разработчик из Астаны. Создаю сайты и веб-приложения, настраиваю интеграции и автоматизирую процессы с помощью ИИ. В работе ценю продуманные решения, понятный код и результат, который помогает продукту расти.',
 
-  copyrightHolder: 'Fullstack Typescript Developer Portfolio',
+  copyrightHolder: 'Леонид Демьянов',
 };
 
 export default siteConfig;

@@ -19,6 +19,7 @@ export type IconName =
   | 'dribbble'
   | 'facebook'
   | 'flag'
+  | 'github'
   | 'grid'
   | 'instagram'
   | 'layers'
@@ -53,21 +54,9 @@ export interface SocialLink {
   icon: IconName;
 }
 
-export interface LogoImage {
-  src: string;
-  width: number;
-  height: number;
-}
-
 export interface SiteConfig {
-  /** Short brand name used in `<title>`, metadata and the logo's alt text. */
+  /** Short brand name used in `<title>` and metadata. */
   name: string;
-  /**
-   * Brand logos. `header` is drawn on the light header, `footer` on the dark
-   * footer, so they usually differ in colour. Give the files' real pixel
-   * dimensions — the CSS sets the display height and the ratio prevents shift.
-   */
-  logo: { header: LogoImage; footer: LogoImage };
   /** Full name of the person the portfolio belongs to. */
   author: string;
   /** Role line shown under the hero and used in structured data. */
@@ -107,11 +96,7 @@ export interface SiteConfig {
 
 export interface Client {
   name: string;
-  /**
-   * Inline SVG child markup drawn on a 24×24 viewBox. The wrapper supplies
-   * `fill="none" stroke="currentColor" stroke-width="1.8"`.
-   */
-  shape: string;
+  logo: string;
 }
 
 export interface Stat {

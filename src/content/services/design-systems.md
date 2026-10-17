@@ -1,10 +1,10 @@
 ---
-title: Design systems
+title: Дизайн-системы
 icon: pen
 number: S/03
-excerpt: Tokens, components and the written rules that stop the tenth screen drifting away from the first.
-description: A right-sized design system — tokens, components and documentation your team will actually maintain.
-tags: ['Tokens', 'Library', 'Docs']
+excerpt: Токены, компоненты и понятные правила, которые помогают сохранять единый стиль во всём продукте.
+description: "Дизайн-система подходящего масштаба: токены, компоненты и документация, которую команде удобно поддерживать."
+tags: ['Токены', 'Компоненты', 'Документация']
 features:
   - A token set named for what things do, not what they currently look like
   - Components sized to your team, not to a theoretical enterprise
