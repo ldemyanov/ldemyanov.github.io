@@ -17,8 +17,8 @@ Demyanov's portfolio.
 photographs, illustrations, project screenshots, written materials, or
 documents from this repository or website without prior written permission
 from Leonid Demyanov and, where applicable, the respective rights holder.**
-This includes personal portfolio materials in `public/photo/`, `public/images/`
-and `public/docs/`. These materials are not covered by the repository's MIT
+This includes personal portfolio materials in `public/images/` and
+`public/docs/`. These materials are not covered by the repository's MIT
 source-code licence.
 
 Company and technology logos remain the property of their respective owners.

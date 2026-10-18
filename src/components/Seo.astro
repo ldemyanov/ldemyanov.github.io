@@ -48,7 +48,7 @@ const ogImage = image.startsWith('http') ? image : absoluteUrl(image, Astro.site
 <meta property="og:site_name" content={siteConfig.name} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
-<meta property="og:url" content={href} />
+{!noindex && <meta property="og:url" content={href} />}
 <meta property="og:image" content={ogImage} />
 <meta property="og:image:alt" content={imageAlt ?? `${siteConfig.name} — ${siteConfig.role}`} />
 <meta property="og:locale" content={siteConfig.locale.replace('-', '_')} />

@@ -1,18 +1,18 @@
 ---
-title: СберКрафт
-client: Сбер и агентство «Далее»
-year: '2024–2026'
-period: 'Апрель 2024 — Сентябрь 2026'
-category: Product
-excerpt: Развивал frontend визуального конструктора ZeroBlock вместе с командой Сбера.
-description: Более двух лет я работал над frontend визуального конструктора ZeroBlock для платформы СберКрафт вместе с командой Сбера.
+title: "СберКрафт"
+client: "Сбер и агентство «Далее»"
+year: "2024–2026"
+period: "Апрель 2024 — Сентябрь 2026"
+category: "Product"
+excerpt: "Развивал frontend визуального конструктора ZeroBlock вместе с командой Сбера."
+description: "Более двух лет я работал над frontend визуального конструктора ZeroBlock для платформы СберКрафт вместе с командой Сбера."
 image:
-  src: /photo/sbercraft/sbercraft.png
-  alt: Ноутбук с открытым визуальным конструктором сайтов СберКрафт
+  src: "/images/sbercraft/sbercraft.webp"
+  alt: "Ноутбук с открытым визуальным конструктором сайтов СберКрафт"
   width: 1000
   height: 848
-services: ['Frontend-разработка совместно с командой Сбера']
-technologies: ['React', 'Redux', 'MobX', 'Styled Components', 'Webpack', 'Rspack', 'Module Federation', 'Ant Design', 'Rollup', 'Storybook', 'MCP', 'Pixso']
+services: ["Frontend-разработка совместно с командой Сбера"]
+technologies: ["React", "Redux", "MobX", "Styled Components", "Webpack", "Rspack", "Module Federation", "Ant Design", "Rollup", "Storybook", "MCP", "Pixso"]
 results: []
 featured: true
 order: 0

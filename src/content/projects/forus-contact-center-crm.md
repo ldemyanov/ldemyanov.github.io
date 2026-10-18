@@ -7,7 +7,7 @@ category: "Product"
 excerpt: "Развивал встроенное в Bitrix24 React-приложение контакт-центра: интерфейсы операторов, чат-боты, интеграции с мессенджерами и работа с MySQL."
 description: "Fullstack-разработка React-приложения контакт-центра «Форус», встроенного в CRM Bitrix24: интерфейсы для операторов, чат-боты первой линии, интеграции с WhatsApp и Telegram и оптимизация запросов к MySQL."
 image:
-  src: "/photo/forus/contact-center.jpeg"
+  src: "/images/forus/contact-center.webp"
   alt: "Интерфейс CRM контакт-центра компании «Форус»"
   width: 1200
   height: 896

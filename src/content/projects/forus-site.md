@@ -1,19 +1,19 @@
 ---
 title: "Сайт компании «Форус»"
 client: "Форус"
-year: '2023'
-period: 'Март — ноябрь 2023'
+year: "2023"
+period: "Март — ноябрь 2023"
 category: "Web"
 excerpt: "Раздел кейсов, более 15 лендингов, поиск, SEO-поддержка и оптимизация изображений."
 description: "С марта по ноябрь 2023 года я работал над сайтом компании «Форус»: создал раздел кейсов и более 15 лендингов, добавил поиск и фильтры, поддерживал SEO-продвижение страниц и оптимизировал загрузку изображений."
 image:
-  src: "/photo/forus/laptop.jpeg"
+  src: "/images/forus/forus-site-cover.webp"
   alt: "Коллаж страниц сайта «Форус»: логотип, услуги, кейсы и информация о команде"
-  width: 1024
-  height: 1024
+  width: 1237
+  height: 848
 externalUrl: "https://www.forus.ru/"
 services: ["Разработка раздела кейсов", "Создание лендингов", "Поиск и фильтрация", "SEO-поддержка страниц", "Оптимизация изображений"]
-technologies: ['HTML', 'PHP', 'CSS', 'Bootstrap', 'JavaScript', 'Bitrix', 'Nginx', 'Redis']
+technologies: ["HTML", "PHP", "CSS", "Bootstrap", "JavaScript", "Bitrix", "Nginx", "Redis"]
 results: []
 featured: true
 order: 1

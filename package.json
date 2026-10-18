@@ -1,26 +1,24 @@
 {
-  "name": "swp-freelancer-portfolio",
+  "name": "ldemyanov-portfolio",
   "version": "1.0.0",
   "private": false,
   "type": "module",
-  "description": "SWP Freelancer Portfolio — a fast, accessible Astro portfolio theme for freelance art directors, designers and small studios.",
+  "description": "Личное портфолио Леонида Демьянова: проекты, опыт и контакты fullstack-разработчика.",
   "license": "MIT",
-  "homepage": "https://github.com/Scintillaweb/swp-freelancer-portfolio#readme",
+  "homepage": "https://ldemyanov.github.io/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Scintillaweb/swp-freelancer-portfolio.git"
+    "url": "git+https://github.com/ldemyanov/ldemyanov.github.io.git"
   },
   "bugs": {
-    "url": "https://github.com/Scintillaweb/swp-freelancer-portfolio/issues"
+    "url": "https://github.com/ldemyanov/ldemyanov.github.io/issues"
   },
   "keywords": [
     "astro",
-    "astro-theme",
-    "astro-template",
     "portfolio",
-    "freelance",
-    "designer",
-    "withastro"
+    "typescript",
+    "fullstack",
+    "github-pages"
   ],
   "engines": {
     "node": ">=22.12.0"
@@ -28,7 +26,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/check-local-links.mjs",
+    "check:links": "node scripts/check-local-links.mjs",
     "preview": "astro preview",
     "check": "astro check",
     "sync": "astro sync",

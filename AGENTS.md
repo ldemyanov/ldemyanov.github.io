@@ -1,5 +1,23 @@
 # Project instructions
 
+## Контекст проекта
+
+Это личное портфолио Леонида Демьянова, fullstack-разработчика из Астаны. Сайт показывает опыт, проекты и услуги, помогает работодателям и заказчикам связаться с автором. Публикуется как статический сайт на GitHub Pages по адресу **ldemyanov.github.io**.
+
+Перед изменением незнакомого раздела откройте нужный документ:
+
+- [Структура папок и страниц](spec/project-structure.md) — маршруты, коллекции, компоненты и расположение контента.
+- [Стек и зависимости](spec/stack-and-dependencies.md) — технологии сайта, npm-пакеты и внешние сервисы.
+- [Сборка и публикация](spec/github-build-and-deploy.md) — Astro build, Web3Forms и GitHub Actions.
+
+Основные точки входа: **src/pages/** для страниц, **src/content/projects/** и **src/content/services/** для статей, **src/data/** для повторяющихся данных, **src/config/site.ts** для общих сведений, **src/styles/** для оформления. Публичные фотографии и иллюстрации находятся в **public/images/**, SVG — в **public/icons/**. После сборки **scripts/check-local-links.mjs** проверяет ссылки в **dist/**.
+
+## Правила работы с кодом
+
+- При написании функций на JavaScript добавляйте JSDoc: текстовое описание назначения функции, `@param` для каждого аргумента и `@returns` с описанием результата, в том числе `void`, если функция ничего не возвращает.
+- Файлы с логикой должны содержать не более 200 строк. Если файл превышает этот размер, разделите логику между несколькими файлами.
+- Если задача кажется невыполнимой или для продолжения нужны уточнения, остановите работу и задайте вопрос пользователю.
+
 ## YAML frontmatter in Markdown content
 
 - Quote every human-readable string value in Markdown frontmatter with double quotes. This includes titles, descriptions, excerpts, alt text, labels, URLs, and string values inside lists.
@@ -13,9 +31,9 @@ Example:
 title: "Сайт компании «Форус»"
 description: "Создал раздел кейсов: добавил поиск и фильтры."
 image:
-  src: "/photo/forus/image.png"
+  src: "/images/forus/forus-site-cover.webp"
   alt: "Коллаж страниц сайта «Форус»: логотип, услуги и кейсы"
-  width: 1024
-  height: 1024
+  width: 1237
+  height: 848
 featured: false
 ```

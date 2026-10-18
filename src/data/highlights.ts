@@ -13,7 +13,7 @@ export const hero = {
   ctaLabel: 'Связаться со мной',
   ctaHref: '/contact/',
   photo: {
-    src: '/photo/LeonidDemyanov.webp',
+    src: '/images/hero/leonid-demyanov.webp',
     alt: 'Портрет Леонида Демьянова на нейтральном фоне',
     width: 960,
     height: 1210,
@@ -36,13 +36,13 @@ export const collaborate = {
   ctaHref: '/contact/',
   images: [
     {
-      src: '/photo/SpaceCraft.webp',
+      src: '/images/hero/spacecraft.webp',
       alt: 'Коллеги обсуждают работу за планшетом в светлом офисе',
       width: 760,
       height: 760,
     },
     {
-      src: '/photo/Meeting.webp',
+      src: '/images/hero/meeting.webp',
       alt: 'Коллеги обсуждают проект за ноутбуком',
       width: 760,
       height: 760,
@@ -60,7 +60,7 @@ export const about = {
     'Могу самостоятельно реализовать веб-проект под ключ.',
   ],
   image: {
-    src: '/images/Arcitecture.jpeg',
+    src: '/images/about/architecture.webp',
     alt: 'Иллюстрация архитектуры веб-продукта: интерфейс, база данных, очередь и API',
     width: 1200,
     height: 900,

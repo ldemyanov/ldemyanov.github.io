@@ -1,14 +1,14 @@
 ---
-title: Шаблон статьи
-description: Шаблон для будущей публикации в блоге.
+title: "Шаблон статьи"
+description: "Шаблон для будущей публикации в блоге."
 pubDate: 2026-01-01
-category: Практика
-readingTime: 1 минута чтения
-author: Леонид Демьянов
+category: "Практика"
+readingTime: "1 минута чтения"
+author: "Леонид Демьянов"
 tags: []
 image:
-  src: /images/Macbook-and-bd-scheme.jpeg
-  alt: Ноутбук с кодом и схема базы данных
+  src: "/images/blog/macbook-and-db-scheme.webp"
+  alt: "Ноутбук с кодом и схема базы данных"
   width: 1195
   height: 896
 featured: false
