@@ -8,6 +8,7 @@
 
 - [Структура папок и страниц](spec/project-structure.md) — маршруты, коллекции, компоненты и расположение контента.
 - [Стек и зависимости](spec/stack-and-dependencies.md) — технологии сайта, npm-пакеты и внешние сервисы.
+- [Структура CSS и адаптивный дизайн](spec/css-architecture.md) — переменные, слои стилей, резиновая вёрстка и точки перехода.
 - [Сборка и публикация](spec/github-build-and-deploy.md) — Astro build, Web3Forms и GitHub Actions.
 
 Основные точки входа: **src/pages/** для страниц, **src/content/projects/** и **src/content/services/** для статей, **src/data/** для повторяющихся данных, **src/config/site.ts** для общих сведений, **src/styles/** для оформления. Публичные фотографии и иллюстрации находятся в **public/images/**, SVG — в **public/icons/**. После сборки **scripts/check-local-links.mjs** проверяет ссылки в **dist/**.
