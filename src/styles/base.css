@@ -49,7 +49,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 :focus-visible {
   outline: 3px solid var(--swp-ink);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: inherit;
 }
 
 /* Visible focus on dark surfaces */

@@ -2,7 +2,6 @@
 import type { GetStaticPaths } from 'astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '~/layouts/BaseLayout.astro';
-import Artwork from '~/components/art/Artwork.astro';
 import Button from '~/components/Button.astro';
 import Cta from '~/components/home/Cta.astro';
 import siteConfig from '~/config/site';
@@ -61,26 +60,16 @@ const jsonLd = graph([
     </section>
 
     <section class="wrap" style="padding-bottom:var(--sec)">
-      {
-        (d.image || d.artwork) && (
-          <div class:list={['case-media', ['sbercraft', 'forus-site', 'geological-map', 'forus-client-account'].includes(project.id) && 'case-media-sbercraft', 'rev']}>
-            {
-              d.image ? (
-                <img
-                  src={d.image.src}
-                  alt={d.image.alt}
-                  width={d.image.width}
-                  height={d.image.height}
-                  fetchpriority="high"
-                  decoding="async"
-                />
-              ) : d.artwork ? (
-                <Artwork name={d.artwork} label={`${d.title} — project artwork`} />
-              ) : null
-            }
-          </div>
-        )
-      }
+      <div class:list={['case-media', ['sbercraft', 'forus-site', 'geological-map', 'forus-client-account'].includes(project.id) && 'case-media-sbercraft', 'rev']}>
+        <img
+          src={d.image.src}
+          alt={d.image.alt}
+          width={d.image.width}
+          height={d.image.height}
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
 
       <div class="case-grid">
         <div class="rev">

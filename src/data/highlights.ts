@@ -19,11 +19,8 @@ export const hero = {
     height: 1210,
   },
   aside: {
-    roleLine: ['Разрабатываю сайты и ПО с 2018 года.', '4 года опыта работы в найме'],
+    roleLine: ['Разрабатываю сайты и ПО с 2021 года.', 'Более 2 лет разрабатывал крупный продукт в команде'],
     title: ['Fullstack Typescript', 'Developer'],
-    /** Small avatar stack — decorative, so the images carry empty alt text. */
-    stack: ['/images/avatar-02.webp', '/images/avatar-01.webp', '/images/avatar-03.webp'],
-    stackBadge: undefined as string | undefined,
     kpi: undefined as string | undefined,
     kpiLabel: undefined as string | undefined,
     note: undefined as string | undefined,
@@ -34,14 +31,9 @@ export const collaborate = {
   eyebrow: 'Поработаем вместе?',
   title: 'Помогаю команде справляться со сложными задачами — от идеи до готового решения.',
   body: 'Готов подключиться к командной разработке или самостоятельно реализовать проект под ключ — от идеи до запуска.',
-  badge: 'Независимый разработчик с 2011 года',
+  badge: '4 года коммерческого опыта',
   ctaLabel: 'Обсудить проект',
   ctaHref: '/contact/',
-  /**
-   * The staggered pair beside the copy. Swap these for the bundled SVG
-   * mockups (`BookletMock`, `TabletMock` in src/components/art/) if you would
-   * rather show artwork than photography — see the README.
-   */
   images: [
     {
       src: '/photo/SpaceCraft.webp',
@@ -61,17 +53,17 @@ export const collaborate = {
 export const about = {
   eyebrow: 'Обо мне',
   title: 'Могу усилить команду или взять проект целиком.',
-  body: 'В приоритете — работа в продуктовой команде. Также готов подключаться к задачам малого бизнеса и самостоятельно разрабатывать веб-проекты под ключ. Работаю на территории работодателя или удалённо из Астаны.',
+  body: 'Как fullstack-разработчик, рассматриваю задачу целиком: от интерфейса и серверной логики до интеграций и запуска.',
   points: [
-    'Ищу возможность развивать продукт вместе с командой.',
+    'Более двух лет развивал крупный продукт вместе с командой.',
     'Готов работать на территории работодателя или удалённо из Астаны.',
     'Могу самостоятельно реализовать веб-проект под ключ.',
   ],
   image: {
-    src: '/images/about-studio.webp',
-    alt: 'Дизайнеры раскладывают стикеры и макеты на рабочем столе',
-    width: 900,
-    height: 954,
+    src: '/images/Arcitecture.jpeg',
+    alt: 'Иллюстрация архитектуры веб-продукта: интерфейс, база данных, очередь и API',
+    width: 1200,
+    height: 900,
   },
   badge: {
     value: 'Полный цикл',

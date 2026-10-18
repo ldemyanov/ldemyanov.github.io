@@ -30,7 +30,7 @@ export function formatDate(date: Date, locale = 'en-GB'): string {
   }).format(date);
 }
 
-/** `2026-07-22`, for `<time datetime>` and structured data. */
+/** `2026-07-22`, for `<time datetime>`. */
 export function isoDate(date: Date): string {
   return date.toISOString().split('T')[0]!;
 }

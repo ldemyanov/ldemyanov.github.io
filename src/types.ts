@@ -1,7 +1,7 @@
 /**
  * Shared types for the theme's configuration and data files.
  *
- * Long-form content (projects, services, journal posts) is typed by the
+ * Long-form content (projects, services and the dormant journal template) is typed by the
  * content collection schemas in `src/content.config.ts` instead — use
  * `CollectionEntry<'projects'>` and friends for those.
  */
@@ -21,6 +21,7 @@ export type IconName =
   | 'flag'
   | 'github'
   | 'grid'
+  | 'handshake'
   | 'instagram'
   | 'layers'
   | 'linkedin'
@@ -31,11 +32,8 @@ export type IconName =
   | 'pen'
   | 'phone'
   | 'pin'
-  | 'play'
   | 'plus'
-  | 'quote'
   | 'spark'
-  | 'star'
   | 'type'
   | 'up';
 
@@ -81,11 +79,8 @@ export interface SiteConfig {
     location: string;
     /** Short availability line shown on the hero card and CTA. */
     availability: string;
-    /**
-     * Where the contact form posts. Leave empty to render the form
-     * unconnected — see the "Contact form" section of the README.
-     */
-    formEndpoint: string;
+    /** Public Web3Forms access key; an empty value keeps the form disabled. */
+    web3FormsAccessKey: string;
   };
   social: SocialLink[];
   /** Footer blurb. */
@@ -103,35 +98,6 @@ export interface Stat {
   /** Short heading shown above the supporting text in the approach cards. */
   value: string;
   label: string;
-}
-
-export interface Testimonial {
-  quote: string;
-  name: string;
-  role: string;
-  avatar: string;
-  avatarAlt: string;
-  /** 1–5. */
-  rating: number;
-}
-
-export interface ProcessStep {
-  stage: string;
-  title: string;
-  body: string;
-  timing: string;
-}
-
-export interface Award {
-  year: string;
-  title: string;
-  detail: string;
-  tag: string;
-}
-
-export interface FaqItem {
-  question: string;
-  answer: string;
 }
 
 export interface ToolkitItem {

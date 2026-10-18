@@ -2,41 +2,25 @@
 import Button from '../Button.astro';
 import SectionHeading from '../SectionHeading.astro';
 import PostCard from '../cards/PostCard.astro';
-import { journalHeading } from '~/data/highlights';
 import { getCollection } from 'astro:content';
-import { isVisible } from '~/lib/utils';
 
 const posts = (await getCollection('blog'))
-  .filter(isVisible)
+  .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-const articleCopy: Record<string, { title: string; description: string }> = {
-  'the-empty-screen-decides': {
-    title: 'Пустой экран задаёт первое впечатление',
-    description: 'Почему стоит начинать проектирование с первого дня пользователя — и как это сделать, не замедлив разработку.',
-  },
-  'name-tokens-for-what-they-do': {
-    title: 'Называйте токены по их назначению',
-    description: 'Схема именования, которая пережила несколько смен айдентики и избавила команду от сотен правок.',
-  },
-  'eleven-questions-before-a-quote': {
-    title: '11 вопросов перед оценкой проекта',
-    description: 'Как заранее прояснить объём работ, избежать разрастания задачи и понять, подходит ли проект обеим сторонам.',
-  },
-};
 ---
 
-<section class="wrap sec" id="journal" aria-labelledby="jrn-h">
-  <SectionHeading class="rev" eyebrow={journalHeading.eyebrow} title={journalHeading.title} id="jrn-h">
-    <Button href={journalHeading.ctaHref} variant="outline">{journalHeading.ctaLabel}</Button>
-  </SectionHeading>
+{posts.length > 0 && (
+  <section class="wrap sec" id="journal" aria-labelledby="jrn-h">
+    <SectionHeading class="rev" eyebrow="Блог" title="Заметки о разработке" id="jrn-h">
+      <Button href="/journal/" variant="outline">Все статьи</Button>
+    </SectionHeading>
 
-  <div class="posts">
-    {
-      posts.map((post, i) => (
-        <PostCard post={post} {...articleCopy[post.id]} class:list={['rev', i % 3 > 0 && `rev-d${i % 3}`]} />
-      ))
-    }
-  </div>
-</section>
+    <div class="posts">
+      {posts.map((post, i) => (
+        <PostCard post={post} class:list={['rev', i % 3 > 0 && `rev-d${i % 3}`]} />
+      ))}
+    </div>
+  </section>
+)}

@@ -1,7 +1,7 @@
 {
-  "name": "SWP Freelancer Portfolio",
-  "short_name": "SWP Portfolio",
-  "description": "A fast, accessible Astro portfolio theme for freelance art directors, designers and small studios.",
+  "name": "Леонид Демьянов — портфолио",
+  "short_name": "Леонид Демьянов",
+  "description": "Портфолио Fullstack-разработчика: веб-приложения, сайты, интеграции и автоматизация.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

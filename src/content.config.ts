@@ -2,10 +2,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-/**
- * Raster images live in `public/images/` and are referenced by their
- * site-absolute path, e.g. `/images/project-console.webp`.
- */
+/** Image metadata used by project and article content. */
 const imageRef = z.object({
   src: z.string(),
   alt: z.string(),
@@ -16,8 +13,7 @@ const imageRef = z.object({
 /**
  * Case studies.
  *
- * A project shows either a photograph (`image`) or one of the inline SVG
- * artworks registered in `src/components/art/registry.ts` (`artwork`).
+ * Project cards and case studies use their provided cover images.
  */
 const projects = defineCollection({
   loader: glob({ base: './src/content/projects', pattern: '**/*.md' }),
@@ -33,8 +29,7 @@ const projects = defineCollection({
     excerpt: z.string(),
     /** Meta description for the case-study page. */
     description: z.string(),
-    image: imageRef.optional(),
-    artwork: z.enum(['identity', 'dashboard', 'app-screens']).optional(),
+    image: imageRef,
     services: z.array(z.string()).default([]),
     technologies: z.array(z.string()).default([]),
     results: z
@@ -69,7 +64,7 @@ const services = defineCollection({
   }),
 });
 
-/** Journal posts. */
+/** One dormant sample article; no journal route or page renders this collection. */
 const blog = defineCollection({
   loader: glob({ base: './src/content/blog', pattern: '**/*.md' }),
   schema: z.object({
@@ -78,7 +73,6 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     category: z.string(),
-    /** Plain string so you stay in control of the wording. */
     readingTime: z.string(),
     image: imageRef,
     author: z.string(),

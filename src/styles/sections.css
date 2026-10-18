@@ -209,27 +209,6 @@
 .hero-tech-icons { display: flex; align-items: center; gap: 14px; }
 .hero-tech-icons img { display: block; width: 32px; height: 32px; object-fit: contain; }
 
-.stack { display: flex; }
-.stack img,
-.stack .stack-more {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 2.5px solid #fff;
-  object-fit: cover;
-  margin-left: -11px;
-}
-.stack img:first-child { margin-left: 0; }
-.stack-more {
-  background: var(--swp-ink);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 600;
-}
-
 .hero-kpi {
   font-family: var(--font-display);
   font-size: 26px;
@@ -389,7 +368,7 @@
   align-items: start;
 }
 .mock { border-radius: var(--r-md); overflow: hidden; background: var(--swp-mist); }
-/* Works for either a photograph or one of the bundled SVG mockups. */
+/* Keep media sized to fill its card. */
 .mock img,
 .mock svg { width: 100%; height: 100%; display: block; object-fit: cover; }
 /* Same ratio in both slots so the two images match in height; the offset
@@ -442,41 +421,6 @@
   font-weight: 500;
 }
 .band-h span { color: rgba(255, 255, 255, 0.45); }
-.band-row {
-  display: grid;
-  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
-  gap: clamp(28px, 4vw, 60px);
-  align-items: center;
-}
-.vid {
-  position: relative;
-  border-radius: var(--r-md);
-  overflow: hidden;
-  aspect-ratio: 16 / 10;
-  background: #1a1b19;
-  box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.9);
-}
-.vid img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.85); }
-.vid > button {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(180deg, rgba(16, 17, 16, 0.05), rgba(16, 17, 16, 0.42));
-}
-.vid > button i {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--swp-lime);
-  color: var(--swp-ink);
-  display: grid;
-  place-items: center;
-  transition: transform 0.35s var(--ease);
-}
-.vid > button:hover i { transform: scale(1.09); }
-.vid iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); }
 .stat { padding-left: clamp(16px, 2.4vw, 40px); border-left: 1px solid rgba(255, 255, 255, 0.16); }
 .stat:first-child { border-left: 0; padding-left: 0; }
@@ -490,7 +434,6 @@
 }
 .stat span { font-size: 14px; color: rgba(255, 255, 255, 0.68); display: block; margin-top: 12px; line-height: 1.6; }
 
-@media (max-width: 880px) { .band-row { grid-template-columns: 1fr; } }
 @media (max-width: 560px) {
   .stats { grid-template-columns: 1fr; gap: 22px; }
   .stat {
@@ -658,12 +601,14 @@
 .kit-item:hover { transform: translateY(-4px); box-shadow: 0 22px 44px -34px rgba(16, 17, 16, 0.6); }
 .kit-item svg { color: var(--swp-graphite); }
 .kit-item b {
+  min-width: 0;
   font-family: var(--font-display);
   font-size: 14px;
-  line-height: 1.2;
+  line-height: 1.3;
   letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
 }
-.kit-item span { font-size: 12.8px; color: var(--swp-slate); line-height: 1.5; }
+.kit-item span { min-width: 0; font-size: 12.8px; color: var(--swp-slate); line-height: 1.5; overflow-wrap: anywhere; }
 
 @media (max-width: 1100px) {
   .kit-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -699,8 +644,7 @@
 }
 .work-media { aspect-ratio: 4 / 3; overflow: hidden; background: var(--swp-line); position: relative; }
 .work-media-crop-bottom img { object-position: center top; }
-.work-media img,
-.work-media svg {
+.work-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -708,9 +652,7 @@
 }
 .work-media-contain img { object-fit: contain; background: #fff; }
 .work-card:hover .work-media img,
-.work-card:hover .work-media svg,
-.work-card:focus-visible .work-media img,
-.work-card:focus-visible .work-media svg { transform: scale(1.05); }
+.work-card:focus-visible .work-media img { transform: scale(1.05); }
 
 .work-body {
   padding: 22px clamp(20px, 2vw, 26px) 26px;
@@ -753,102 +695,7 @@
 .work-card[hidden] { display: none; }
 
 /* ============================================================
-   10. Process
-   ============================================================ */
-.proc {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: clamp(18px, 2.2vw, 30px);
-}
-.proc-step { padding-top: 26px; border-top: 2px solid var(--swp-ink); position: relative; }
-.proc-step:nth-child(n + 2) { border-top-color: var(--swp-line); }
-.proc-step b {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--swp-slate);
-  display: block;
-  margin-bottom: 14px;
-}
-.proc-step h3 { font-size: 21px; margin-bottom: 11px; letter-spacing: -0.024em; }
-.proc-step p { font-size: 14.6px; color: var(--swp-slate); line-height: 1.68; }
-.proc-step em {
-  font-style: normal;
-  display: inline-block;
-  margin-top: 14px;
-  font-size: 12.6px;
-  font-weight: 600;
-  padding: 5px 12px;
-  border-radius: var(--r-pill);
-  background: var(--swp-mist);
-}
-
-/* ============================================================
-   11. Recognition
-   ============================================================ */
-.recognition { background: var(--swp-mist); }
-.awards { display: grid; gap: 0; border-top: 1px solid var(--swp-line); }
-.award {
-  display: grid;
-  grid-template-columns: 88px minmax(0, 1.4fr) minmax(0, 1fr) auto;
-  gap: clamp(14px, 2vw, 32px);
-  align-items: center;
-  padding: clamp(20px, 2.2vw, 30px) 0;
-  border-bottom: 1px solid var(--swp-line);
-  transition: background 0.35s var(--ease), padding-inline 0.35s var(--ease);
-}
-.award:hover { background: var(--swp-mist); padding-inline: 20px; }
-.recognition .award:hover { background: #fff; }
-.award-yr { font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--swp-slate); }
-.award h3 { font-size: clamp(19px, 1.9vw, 26px); letter-spacing: -0.026em; }
-.award p { font-size: 14.4px; color: var(--swp-slate); }
-
-@media (max-width: 820px) {
-  .award { grid-template-columns: 1fr auto; gap: 8px 16px; }
-  .award-yr { order: 1; }
-  .award .pill { order: 2; justify-self: end; }
-  .award h3 { order: 3; grid-column: 1 / -1; }
-  .award p { order: 4; grid-column: 1 / -1; }
-}
-
-/* ============================================================
-   12. Testimonials
-   ============================================================ */
-.tst { background: var(--swp-mist); }
-.tst-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: clamp(14px, 1.7vw, 22px);
-}
-.tst-card {
-  background: #fff;
-  border-radius: var(--r-md);
-  padding: clamp(24px, 2.4vw, 32px);
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
-}
-.tst-card:hover { transform: translateY(-5px); box-shadow: 0 28px 56px -40px rgba(16, 17, 16, 0.6); }
-.tst-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
-.stars { display: flex; gap: 3px; color: var(--swp-ink); }
-.tst-card blockquote { margin: 0; font-size: 15.4px; line-height: 1.7; }
-.tst-who {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  margin-top: auto;
-  padding-top: 20px;
-  border-top: 1px solid var(--swp-line);
-}
-.tst-who img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: none; }
-.tst-who b { display: block; font-family: var(--font-display); font-size: 15px; letter-spacing: -0.02em; }
-.tst-who span { font-size: 12.8px; color: var(--swp-slate); }
-
-/* ============================================================
-   13. Journal
+   10. Journal (kept for the dormant component)
    ============================================================ */
 .posts {
   display: grid;
@@ -889,74 +736,7 @@
 .post:hover .post-link svg { transform: translate(3px, -3px); }
 
 /* ============================================================
-   14. FAQ
-   ============================================================ */
-.faq-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
-  gap: clamp(28px, 4vw, 64px);
-  align-items: start;
-}
-.faq-list { border-top: 1px solid var(--swp-line); }
-.faq-item { border-bottom: 1px solid var(--swp-line); }
-.faq-q {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 22px 0;
-  text-align: left;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(16px, 1.5vw, 19px);
-  letter-spacing: -0.022em;
-  cursor: pointer;
-  list-style: none;
-}
-.faq-q::-webkit-details-marker { display: none; }
-.faq-q i {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  flex: none;
-  background: var(--swp-mist);
-  display: grid;
-  place-items: center;
-  transition: background 0.3s var(--ease), transform 0.4s var(--ease);
-}
-.faq-item[open] > .faq-q i { background: var(--swp-lime); transform: rotate(135deg); }
-.faq-a p { padding: 0 60px 24px 0; font-size: 15px; color: var(--swp-slate); line-height: 1.7; }
-
-/* The accordion is a native <details name="faq"> group: the browser gives
-   us exclusive open/close, keyboard support and correct semantics with no
-   JavaScript at all. The rules below animate the panel where the browser
-   supports `::details-content`, and are simply ignored where it does not —
-   the accordion still opens and closes either way. */
-.faq-item::details-content {
-  block-size: 0;
-  overflow: hidden;
-  transition: block-size 0.42s var(--ease), content-visibility 0.42s allow-discrete;
-}
-.faq-item[open]::details-content { block-size: auto; }
-
-@media (prefers-reduced-motion: no-preference) {
-  /* Lets `block-size: auto` interpolate instead of snapping. */
-  :root { interpolate-size: allow-keywords; }
-}
-
-.faq-aside {
-  background: var(--swp-mist);
-  border-radius: var(--r-lg);
-  padding: clamp(26px, 2.6vw, 36px);
-}
-.faq-aside h2 { font-size: 23px; margin-bottom: 12px; letter-spacing: -0.026em; }
-.faq-aside p { font-size: 14.8px; color: var(--swp-slate); margin-bottom: 24px; }
-
-@media (max-width: 880px) { .faq-grid { grid-template-columns: 1fr; } }
-
-/* ============================================================
-   15. CTA
+   11. CTA
    ============================================================ */
 .cta {
   background: var(--swp-lime);
@@ -976,7 +756,7 @@
 .cta-ring.b { width: 240px; height: 240px; right: -70px; top: -90px; }
 
 /* ============================================================
-   16. Footer
+   12. Footer
    ============================================================ */
 .ftr { background: var(--swp-ink); color: #fff; padding-top: clamp(52px, 5.4vw, 84px); }
 .ftr-top {

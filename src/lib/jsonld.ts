@@ -34,35 +34,6 @@ export function websiteSchema(site: SiteConfig): Json {
   };
 }
 
-export function blogPostingSchema(
-  site: SiteConfig,
-  post: {
-    title: string;
-    description: string;
-    url: string;
-    image: string;
-    datePublished: string;
-    dateModified?: string;
-    author: string;
-    keywords?: string[];
-  }
-): Json {
-  return {
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.description,
-    url: post.url,
-    image: post.image,
-    datePublished: post.datePublished,
-    dateModified: post.dateModified ?? post.datePublished,
-    author: { '@type': 'Person', name: post.author, url: `${site.url}/` },
-    publisher: { '@id': `${site.url}/#person` },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': post.url },
-    inLanguage: site.locale,
-    ...(post.keywords?.length ? { keywords: post.keywords.join(', ') } : {}),
-  };
-}
-
 export function breadcrumbSchema(items: { name: string; url: string }[]): Json {
   return {
     '@type': 'BreadcrumbList',

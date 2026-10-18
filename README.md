@@ -1,11 +1,11 @@
 # SWP Freelancer Portfolio
 
 A fast, accessible Astro portfolio theme for freelance art directors, designers
-and small studios. Case studies, services, a journal, testimonials and an FAQ —
+and small studios. Case studies, services and contact details —
 built as static HTML with a few kilobytes of vanilla JavaScript and no UI
 framework.
 
-![The theme's homepage: a large Space Grotesk name, a portrait card with an availability badge, and a client logo strip, on a lime, ink and off-white palette](public/preview.png)
+![The portfolio homepage with a large heading, portrait card and client logo strip on a lime, ink and off-white palette](public/preview.png)
 
 ## Demo
 
@@ -18,36 +18,32 @@ Source: [github.com/Scintillaweb/swp-freelancer-portfolio](https://github.com/Sc
 - **Astro 7, static output.** Every route is prerendered. No adapter, no server.
 - **No UI framework.** Astro components, plain CSS, and roughly 5 KB of vanilla
   JavaScript on the heaviest page — about 2 KB over the wire.
-- **Twelve page routes** — home, about, services (index + detail), work
-  (index + case study), journal (index + article), contact, privacy, terms and
-  a custom 404 — plus `robots.txt` and a sitemap. The demo content
-  builds out to 27 pages.
-- **Content collections** for projects, services and journal posts, with typed
-  frontmatter schemas and draft support.
+- **Static routes** for home, about, services, work, contact, privacy, terms
+  and a custom 404 — plus `robots.txt` and a sitemap.
+- **Content collections** for projects and services, with typed frontmatter
+  schemas and draft support; one separate article template remains dormant.
 - **One config file.** Name, role, contact details, social links and SEO
   defaults all live in `src/config/site.ts`.
 - **Case studies** with results figures, client facts, services, tooling and a
   next-project link.
-- **Journal** with categories, tags, reading time and BlogPosting
-  structured data.
 - **Filterable work grid** built from the categories actually in use, with an
   `aria-live` result count.
-- **Accessible by construction** — skip link, visible focus rings, a native
-  `<details>` accordion, a keyboard-operable nav drawer, one `h1` per page and
+- **Accessible by construction** — skip link, visible focus rings, a
+  keyboard-operable nav drawer, one `h1` per page and
   a palette checked against WCAG AA.
-- **Works without JavaScript.** Content renders, the accordion opens, and the
-  mobile drawer degrades to a plain visible list.
+- **Works without JavaScript.** Content renders, and the mobile drawer
+  degrades to a plain visible list.
 - **Respects `prefers-reduced-motion`.** The reveal animation is opt-in under
   `prefers-reduced-motion: no-preference`, so it can never leave content stuck
   invisible.
-- **Self-hosted variable fonts.** Two WOFF2 files cover every weight; no request
+- **Self-hosted variable fonts.** Local Unbounded and IBM Plex Sans files cover every weight; no request
   leaves your domain.
-- **Custom SVG throughout** — a 29-icon sprite, three project artworks, two
+- **Custom SVG throughout** — a 27-icon sprite, three project artworks, two
   device mockups, a signature mark and the monogram behind the favicon and app
   icons. No icon library. Header and footer take raster logo files, swappable
   in one config block.
 - **SEO built in** — canonical URLs, Open Graph, Twitter cards, JSON-LD
-  (`Person`, `WebSite`, `BlogPosting`, `BreadcrumbList`), a generated sitemap
+  (`Person`, `WebSite`, `BreadcrumbList`), a generated sitemap
   and a generated `robots.txt`.
 
 ## Tech stack
@@ -120,14 +116,14 @@ npm run sync       # regenerate content collection types
     ├── content/
     │   ├── projects/       # case studies (Markdown)
     │   ├── services/       # service pages (Markdown)
-    │   └── blog/           # journal posts (Markdown)
+    │   └── blog/           # one dormant article template; no blog routes
     ├── data/               # everything that is a list, not a page
     ├── layouts/
     │   ├── BaseLayout.astro    # <head>, header, footer, global scripts
     │   └── PageLayout.astro    # BaseLayout + a standard page header
     ├── components/
     │   ├── home/           # one component per homepage section
-    │   ├── cards/          # work, post, service, testimonial cards
+    │   ├── cards/          # work, post, service cards
     │   ├── art/            # inline SVG artwork
     │   ├── icons/          # the icon sprite
     │   └── *.astro         # Header, Footer, Button, Seo, ContactForm …
@@ -145,13 +141,12 @@ npm run sync       # regenerate content collection types
 
 ### Where content lives, and why there are two places
 
-Long-form things that deserve their own URL — **projects, services and journal
-posts** — are Markdown files in `src/content/`, validated by the schemas in
-`src/content.config.ts`.
+Projects and services are Markdown files in `src/content/`, validated by the
+schemas in `src/content.config.ts`. `src/content/blog/` contains one dormant
+article template; no page or route currently renders a blog.
 
-Short repeating things that never get their own page — **navigation,
-testimonials, process steps, awards, FAQ entries, the toolkit grid, client
-logos, stats** — are typed TypeScript arrays in `src/data/`. They are easier to
+Short repeating things that never get their own page — **navigation, the
+toolkit grid, client logos and stats** — are typed TypeScript arrays in `src/data/`. They are easier to
 edit and reorder than a directory of two-line Markdown files.
 
 ## Customisation
@@ -221,13 +216,12 @@ URL.
 
 ### Homepage sections
 
-`src/pages/index.astro` is a list of fourteen components. Reorder them, or
+`src/pages/index.astro` lists the homepage components. Reorder them, or
 delete the ones you do not want:
 
 ```astro
 <Hero /> <TrustedStrip /> <Collaborate /> <StatsBand /> <About />
-<Services /> <Toolkit /> <Work /> <Process /> <Awards />
-<Testimonials /> <Journal /> <Faq /> <Cta id="contact" />
+<Services /> <Toolkit /> <Work />
 ```
 
 The copy for the one-of-a-kind sections (hero, collaborate, about, CTA and the
@@ -236,19 +230,8 @@ section headings) lives in `src/data/highlights.ts`.
 #### The "Working together" visuals
 
 That section shows a staggered pair of images, set in `collaborate.images` in
-`src/data/highlights.ts`. Swap the two files, or point it at your own.
-
-The theme also ships two inline SVG device mockups — `BookletMock.astro` and
-`TabletMock.astro` in `src/components/art/` — which is what that slot used
-before. To use artwork instead of photography, drop them back into
-`src/components/home/Collaborate.astro`:
-
-```astro
-<div class="mocks">
-  <div class="mock mock-a"><BookletMock /></div>
-  <div class="mock mock-b"><TabletMock /></div>
-</div>
-```
+`src/data/highlights.ts`. The images are specific to this portfolio; replace
+them only with images you have permission to use.
 
 `.mock img` and `.mock svg` share the same sizing rules, so either works
 without touching the CSS.
@@ -264,22 +247,11 @@ mockups were drawn on a 4/5 canvas.
 | File | Controls |
 | --- | --- |
 | `src/data/clients.ts` | Marquee logos and the strip's label |
-| `src/data/stats.ts` | The three counters, the band headline, the reel poster |
+| `src/data/stats.ts` | The three approach cards and the band headline |
 | `src/data/toolkit.ts` | The toolkit grid |
-| `src/data/process.ts` | The four process stages |
-| `src/data/awards.ts` | The recognition list |
-| `src/data/testimonials.ts` | Quotes, names, roles, avatars, ratings |
-| `src/data/faq.ts` | Accordion entries and the aside |
 
 Each is a typed array; the types are in `src/types.ts`, so your editor will tell
 you when a field is missing.
-
-### The studio reel
-
-`stats.ts` exports a `reel` object. Leave `embedUrl` empty and the poster frame
-renders on its own. Set it to a YouTube or Vimeo embed URL and a play button
-appears that swaps the poster for the iframe on click — so nothing third-party
-loads unless a visitor asks for it.
 
 ## Adding a project
 
@@ -318,56 +290,9 @@ The body is ordinary Markdown and renders into the case-study column.
 Put the image in `public/images/` and give `width` and `height` its real pixel
 dimensions — they reserve the space and stop the layout shifting.
 
-**Using artwork instead of a photograph.** Drop `image` and set `artwork`
-instead:
-
-```yaml
-artwork: identity          # identity | dashboard | app-screens
-```
-
-To add your own, create a component in `src/components/art/`, register it in
-`src/components/art/Artwork.astro`, and add its key to the `artwork` enum in
-`src/content.config.ts`.
-
 **Categories.** The filter chips on `/work` are generated from the categories in
 use, so you only need to widen the `category` enum in `src/content.config.ts` to
 add one.
-
-## Adding a journal post
-
-Create `src/content/blog/my-post.md` → `/journal/my-post/`.
-
-```markdown
----
-title: Post title
-description: One or two sentences, used on the card and as the meta description
-pubDate: 2026-07-22
-updatedDate: 2026-08-01    # optional
-category: Product
-readingTime: 6 min read
-author: Robin Vale
-tags: ['design systems', 'naming']
-image:
-  src: /images/my-post.webp
-  alt: A real description of what the photograph shows
-  width: 800
-  height: 550
-featured: false
-draft: false
----
-
-Ordinary Markdown. Headings, lists, blockquotes, code blocks and links are all
-styled by the `.prose` rules in `src/styles/pages.css`.
-```
-
-`readingTime` is a plain string rather than a computed value, so you stay in
-control of the wording and the build stays dependency-free.
-
-Posts sort by `pubDate`, newest first. The three most recent appear on the
-homepage; `/journal/` lists them all. There is no pagination — with a handful of
-posts it costs more than it gives. If you accumulate enough to want it,
-Astro's [`paginate()`](https://docs.astro.build/en/guides/routing/#pagination)
-drops into `src/pages/journal/` without touching anything else.
 
 ## Adding a service
 
@@ -398,53 +323,22 @@ The footer lists the first five services automatically.
 
 ## Contact form
 
-The form at `/contact/` is a real, accessible, labelled form with a honeypot
-field — but a static site has nowhere to post it, so **it ships disconnected**.
-Until you connect it, the page says so and the submit button is disabled. It
-does not pretend to work.
+The form at `/contact/` submits to [Web3Forms](https://web3forms.com). It stays
+disabled until a Web3Forms access key is available at build time.
 
-To connect it, set `contact.formEndpoint` in `src/config/site.ts`:
+1. Create a form in Web3Forms and copy its access key.
+2. For local development, copy `.env.example` to `.env` and set
+   `PUBLIC_WEB3FORMS_ACCESS_KEY` to that key.
+3. For a deployed build, provide the same variable in the build environment.
+   If GitHub Actions builds the site, add it to the repository's Actions
+   variables or secrets and expose it to the build step.
 
-**[Formspree](https://formspree.io)**
-
-```ts
-formEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
-```
-
-**[Web3Forms](https://web3forms.com)**
-
-```ts
-formEndpoint: 'https://api.web3forms.com/submit',
-```
-
-Web3Forms also needs an access key. Add it as a hidden input in
-`src/components/ContactForm.astro`:
-
-```astro
-<input type="hidden" name="access_key" value={import.meta.env.PUBLIC_WEB3FORMS_KEY} />
-```
-
-and put the key in `.env` as `PUBLIC_WEB3FORMS_KEY`. A Web3Forms access key is
-designed to be public, so this is safe — but never commit a secret this way.
-
-**[Netlify Forms](https://docs.netlify.com/forms/setup/)**
-
-The form already carries `name="contact"` and the matching
-`<input type="hidden" name="form-name" value="contact">`. Add `data-netlify`
-to the `<form>` tag in `src/components/ContactForm.astro` and set:
-
-```ts
-formEndpoint: '/',
-```
-
-**Your own API.** Point `formEndpoint` at any URL that accepts a
-`POST` of `application/x-www-form-urlencoded`.
-
-The form posts `name`, `email`, `company`, `project_type` and `message`, plus
-`_gotcha` — the honeypot, which real people leave empty. Reject anything that
-arrives with it filled in.
-
-No API key, token or credential is committed anywhere in this repository.
+The `PUBLIC_` prefix means the access key is included in the generated site and
+visible to visitors. Web3Forms keys are intended for this browser-side use; do
+not use this pattern for passwords or private API credentials. The form sends
+`name`, `email`, `company`, `project_type` and `message`, with Web3Forms' hidden
+`botcheck` honeypot. `.env` is ignored by Git and the example file contains no
+key.
 
 ## Deployment
 
@@ -474,33 +368,25 @@ Pages all do this automatically.
 
 ## Images
 
-The fourteen photographs in `public/images/` are all
-[CC0 1.0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) —
-free to use, modify and redistribute, commercially included, with no
-attribution required. Twelve come from [Pxhere](https://pxhere.com/) and two
-from [StockSnap](https://stocksnap.io/). Every one is credited with its source
-page in [CREDITS.md](CREDITS.md) so you can verify it yourself.
-
-They are stored locally and pre-optimised. Nothing is hotlinked. The folder
-also holds the two brand logo files. Everything together comes to about
-525 KB, and no single page loads more than a few of them.
-
-Every image is cropped to the aspect ratio its slot needs, re-encoded as WebP,
-carries explicit `width` and `height`, and is lazy-loaded unless it is above the
+Portfolio photographs and images are stored locally in `public/photo/` and
+`public/images/`; project documents are in `public/docs/`. They are included to
+present this portfolio and are not covered by the source-code MIT licence.
+Do not copy or reuse them without written permission from the relevant rights
+holder. See [CREDITS.md](CREDITS.md) for details and third-party licences.
 fold. Because they are already the right size and format, the theme uses plain
 `<img>` rather than `astro:assets` — that keeps `sharp` out of the dependency
 tree and the build fast. If you would rather use Astro's image pipeline, move
 the files to `src/assets/`, import them, and swap the `<img>` tags for
 `<Image>`.
 
-Give every meaningful image real alt text. Use `alt=""` only when an image is
-genuinely decorative — as the hero avatar stack is.
+Give every meaningful image real alt text. Use `alt=""` only for images that
+are purely decorative.
 
 ## Icons and SVG
 
 All the artwork is custom and inline. There is no icon library.
 
-The 29-icon sprite is rendered once per page from
+The 27-icon sprite is rendered once per page from
 `src/components/icons/IconSprite.astro` and referenced through a small
 component:
 
@@ -523,9 +409,6 @@ What the theme does, so you know what not to undo:
 - A skip link, and `<main id="main">` for it to reach.
 - Visible `:focus-visible` rings on every interactive element, switching to
   lime on dark surfaces. Nothing uses `outline: none`.
-- The FAQ is a native `<details name="…">` group: exclusive open/close,
-  keyboard support and correct semantics from the browser, with no JavaScript.
-  The panel animation is a progressive enhancement.
 - The nav drawer has `aria-expanded`, `aria-controls`, Escape-to-close, focus
   moved in on open and returned to the trigger on close — and without
   JavaScript it degrades to a plain visible list.
@@ -546,51 +429,36 @@ If you change the palette or the markup, re-check these.
 - Static HTML, no hydration, no framework runtime.
 - Roughly 5 KB of JavaScript on the homepage (about 2 KB gzipped), and less on
   every other page. It is split across five small scripts — scroll reveal and
-  header state, the nav drawer, the marquee, the stat counters and the reel,
+  header state, the nav drawer, the marquee, the stat counters,
   and the work filter — each shipped only to the pages that use it. Every one
   of them is an enhancement over markup that already works.
 - One ~38 KB stylesheet (8 KB gzipped), one inline icon sprite, a 3 KB logo,
-  and two font files for a Latin-script visitor.
+  and two local fonts with Cyrillic support.
 - Images pre-sized, WebP, dimensioned and lazy-loaded below the fold; only the
   hero portrait is `fetchpriority="high"`.
-- No third-party requests at all. No analytics, no font CDN, no embeds unless
-  you add a reel URL.
+- No third-party requests at all. No analytics, no font CDN and no embeds.
 
 ## Browser support
 
 Current versions of Chrome, Edge, Firefox and Safari.
 
 The theme leans on a few modern CSS features and degrades cleanly where they
-are missing: `aspect-ratio`, `clamp()`, `:has`-free selectors, and
-`::details-content` with `interpolate-size` for the FAQ animation. A browser
-without `::details-content` simply toggles the accordion instantly. A browser
-without `<details name>` support allows more than one panel open at a time.
+are missing, including `aspect-ratio` and `clamp()`.
 
 ## License
 
-MIT — see [LICENSE](LICENSE). Use it commercially, change it, ship it, no
-attribution required.
-
-Bundled third-party assets keep their own licences:
-
-- **Photographs** — CC0 1.0 Public Domain (Pxhere, StockSnap)
-- **Space Grotesk, Unbounded, IBM Plex Sans** — SIL Open Font License 1.1
-- **`header-logo.webp`** — the demo brand's own mark, not covered by the MIT
-  grant. Replace it with your own logo if you use it.
-
-[CREDITS.md](CREDITS.md) has the full accounting, including per-image source
-links and the OFL texts shipped alongside the fonts.
+The website source code is licensed under MIT; see [LICENSE](LICENSE). The
+licence does not apply to the portfolio's photographs, written materials,
+project images, documents, or third-party assets. Their use is restricted as
+described in [CREDITS.md](CREDITS.md).
 
 ## Credits
 
-- [Astro](https://astro.build) — the framework
-- [Pxhere](https://pxhere.com) and [StockSnap](https://stocksnap.io) — CC0 photographs
-- [Space Grotesk](https://github.com/floriankarsten/space-grotesk) by Florian
-  Karsten — display typeface
-- [Unbounded](https://github.com/google/fonts/tree/main/ofl/unbounded) — heading typeface
-- [IBM Plex Sans](https://github.com/google/fonts/tree/main/ofl/ibmplexsans) — body typeface
+- [Astro](https://astro.build) — framework
+- [Lucide](https://github.com/lucide-icons/lucide) — handshake icon
+- [Unbounded](https://github.com/google/fonts/tree/main/ofl/unbounded) and [IBM Plex Sans](https://github.com/google/fonts/tree/main/ofl/ibmplexsans) — fonts
 
-Icons, artwork, layout and demo copy were made for this theme.
+See [CREDITS.md](CREDITS.md) for licence details and portfolio asset restrictions.
 
 ## Contributing
 

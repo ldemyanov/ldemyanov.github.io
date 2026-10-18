@@ -1,6 +1,5 @@
 ---
 import Icon from '../Icon.astro';
-import Artwork from '../art/Artwork.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -14,7 +13,7 @@ interface Props {
 }
 
 const { project, title: titleOverride, excerpt: excerptOverride, imageAlt, eager = false, class: className } = Astro.props;
-const { title: sourceTitle, excerpt: sourceExcerpt, year, category, image, artwork } = project.data;
+const { title: sourceTitle, excerpt: sourceExcerpt, year, category, image } = project.data;
 const title = titleOverride ?? sourceTitle;
 const excerpt = excerptOverride ?? sourceExcerpt;
 ---
@@ -24,31 +23,21 @@ const excerpt = excerptOverride ?? sourceExcerpt;
   href={`/work/${project.id}/`}
   data-category={category}
 >
-  {
-    (image || artwork) && (
-      <div class:list={[
-        'work-media',
-        project.id === 'forus-site' && 'work-media-crop-bottom',
-        ['geological-map', 'forus-client-account'].includes(project.id) && 'work-media-contain',
-      ]}>
-        <span class="work-year">{year}</span>
-        {
-          image ? (
-            <img
-              src={image.src}
-              alt={imageAlt ?? image.alt}
-              width={image.width}
-              height={image.height}
-              loading={eager ? 'eager' : 'lazy'}
-              decoding="async"
-            />
-          ) : artwork ? (
-            <Artwork name={artwork} label={`${title} — иллюстрация проекта`} />
-          ) : null
-        }
-      </div>
-    )
-  }
+  <div class:list={[
+    'work-media',
+    project.id === 'forus-site' && 'work-media-crop-bottom',
+    ['geological-map', 'forus-client-account'].includes(project.id) && 'work-media-contain',
+  ]}>
+    <span class="work-year">{year}</span>
+    <img
+      src={image.src}
+      alt={imageAlt ?? image.alt}
+      width={image.width}
+      height={image.height}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+    />
+  </div>
   <div class="work-body">
     <div>
       <h3>{title}</h3>

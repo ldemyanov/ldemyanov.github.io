@@ -11,17 +11,3 @@ export const statsHeading = {
   lead: 'Использую разработку на основе спецификаций и автоматизирую рутинную работу.',
   tail: 'Тщательно проверяю код, слежу за архитектурой и применяю MCP, навыки и агентов. Если нужно — самостоятельно берусь за реализацию.',
 };
-
-/**
- * Poster frame for the studio reel. Set `embedUrl` to a YouTube/Vimeo
- * privacy-friendly embed to make the play button load a real video;
- * leave it empty and the button is hidden.
- */
-export const reel = {
-  image: '/images/reel-poster.webp',
-  alt: 'Два человека обсуждают заметки и эскизы за рабочим столом',
-  width: 1000,
-  height: 625,
-  embedUrl: '',
-  label: 'Воспроизвести видео о работе',
-};

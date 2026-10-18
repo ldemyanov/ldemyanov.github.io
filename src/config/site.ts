@@ -1,17 +1,6 @@
 import type { SiteConfig } from '~/types';
 
-/**
- * ============================================================
- *  ЕДИНСТВЕННЫЙ ФАЙЛ, КОТОРЫЙ НУЖНО ИЗМЕНИТЬ СНАЧАЛА
- * ============================================================
- *
- * Здесь собран демонстрационный контент. Замените его своим — и данные
- * в шапке, подвале, первом экране, на странице контактов, в метаданных,
- * структурированных данных и карте сайта обновятся автоматически.
- *
- * Канонический URL задаётся в `astro.config.mjs` (параметр `site`), а сюда
- * передаётся через `import.meta.env.SITE`.
- */
+/** Общие сведения о сайте, авторе и способах связи. */
 export const siteConfig: SiteConfig = {
   name: 'Портфолио Леонида Демьянова',
 
@@ -30,9 +19,9 @@ export const siteConfig: SiteConfig = {
     phoneHref: '+77788131612',
     location: 'Астана',
     availability: 'Доступен для работы на фрилансе и в штате',
-    // Paste a Formspree / Web3Forms / Netlify endpoint here to make the
-    // contact form live. See "Contact form" in the README.
-    formEndpoint: '',
+    // Web3Forms browser-side access key. Configure it as
+    // PUBLIC_WEB3FORMS_ACCESS_KEY in the build environment.
+    web3FormsAccessKey: import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY?.trim() ?? '',
   },
 
   social: [
