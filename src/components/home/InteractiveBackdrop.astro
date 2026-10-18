@@ -1,0 +1,255 @@
+<canvas class="interactive-backdrop" id="interactive-backdrop" aria-hidden="true"></canvas>
+
+<style>
+  .interactive-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 1s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .interactive-backdrop { display: none; }
+  }
+</style>
+
+<script>
+  import { interactiveBackdropColors } from '~/data/interactive-backdrop';
+
+  const canvas = document.querySelector<HTMLCanvasElement>('#interactive-backdrop');
+  const context = canvas?.getContext('2d');
+
+  if (canvas && context && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Adapted from the supplied painting.js demo. Matrix2D logic is based on
+    // EaselJS by Grant Skinner, Copyright (c) 2010, MIT License.
+    // https://easeljs.com/
+    // Permission is hereby granted, free of charge, to any person obtaining a copy
+    // of this software and associated documentation files (the "Software"), to deal
+    // in the Software without restriction, including without limitation the rights
+    // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    // copies of the Software, and to permit persons to whom the Software is
+    // furnished to do so, subject to the following conditions:
+    // The above copyright notice and this permission notice shall be included in all
+    // copies or substantial portions of the Software.
+    // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    // IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+    // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+    // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+    // USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+    type Matrix = { a: number; b: number; c: number; d: number; tx: number; ty: number };
+    type Worm = {
+      c1x: number; c1y: number; c2x: number; c2y: number;
+      p1x: number; p1y: number; p2x: number; p2y: number;
+      width: number; angle: number; count: number;
+      transform: Matrix; step: Matrix;
+    };
+
+    let width = 0;
+    let height = 0;
+    let pixelRatio = 1;
+    let animationFrame = 0;
+    let lastFrame = 0;
+    let fadeTimer = 0;
+    let clearTimer = 0;
+    let hasPreviousPoint = false;
+    let hasPendingPointer = false;
+    const mouse = { x: 0, y: 0 };
+    const previous = { x: 0, y: 0 };
+    const worms: Worm[] = [];
+
+    const identity = (): Matrix => ({ a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0 });
+
+    const rotate = (matrix: Matrix, angle: number) => {
+      const sin = Math.sin(angle);
+      const cos = Math.cos(angle);
+      const a = cos * matrix.a + sin * matrix.c;
+      const b = cos * matrix.b + sin * matrix.d;
+      const c = -sin * matrix.a + cos * matrix.c;
+      const d = -sin * matrix.b + cos * matrix.d;
+      matrix.a = a;
+      matrix.b = b;
+      matrix.c = c;
+      matrix.d = d;
+    };
+
+    const prepend = (matrix: Matrix, step: Matrix) => {
+      const a = step.a * matrix.a + step.b * matrix.c;
+      const b = step.a * matrix.b + step.b * matrix.d;
+      const c = step.c * matrix.a + step.d * matrix.c;
+      const d = step.c * matrix.b + step.d * matrix.d;
+      const tx = step.tx * matrix.a + step.ty * matrix.c + matrix.tx;
+      const ty = step.tx * matrix.b + step.ty * matrix.d + matrix.ty;
+      Object.assign(matrix, { a, b, c, d, tx, ty });
+    };
+
+    const resize = () => {
+      pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      width = Math.max(window.innerWidth, document.documentElement.scrollWidth);
+      height = Math.max(window.innerHeight, document.documentElement.scrollHeight);
+      const canvasWidth = Math.round(width * pixelRatio);
+      const canvasHeight = Math.round(height * pixelRatio);
+      if (canvas.width !== canvasWidth || canvas.height !== canvasHeight) {
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+      }
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    };
+
+    const resetFadeTimer = () => {
+      window.clearTimeout(fadeTimer);
+      window.clearTimeout(clearTimer);
+      canvas.style.opacity = '1';
+      fadeTimer = window.setTimeout(() => {
+        canvas.style.opacity = '0';
+        clearTimer = window.setTimeout(() => {
+          canvas.width = canvas.width;
+          canvas.height = canvas.height;
+          context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+          worms.length = 0;
+          canvas.style.transition = 'none';
+          canvas.style.opacity = '1';
+          canvas.getBoundingClientRect();
+          canvas.style.transition = '';
+        }, 1100);
+      }, 60_000);
+    };
+
+    const createWorm = (x: number, y: number, vx: number, vy: number, distance: number) => {
+      const transform = identity();
+      rotate(transform, -Math.atan2(vx, vy));
+      transform.tx = x;
+      transform.ty = y;
+
+      const step: Matrix = { a: 0.95, b: 0, c: 0, d: 0.95, tx: 12, ty: 0 };
+      const halfWidth = 0.5;
+      const edge1x = -halfWidth * transform.c + transform.tx;
+      const edge1y = -halfWidth * transform.d + transform.ty;
+      const edge2x = halfWidth * transform.c + transform.tx;
+      const edge2y = halfWidth * transform.d + transform.ty;
+      const randomAngle = Math.PI / 64 + Math.random() * (Math.PI / 6 - Math.PI / 64);
+
+      worms.push({
+        c1x: edge1x, c1y: edge1y, c2x: edge2x, c2y: edge2y,
+        p1x: edge1x, p1y: edge1y, p2x: edge2x, p2y: edge2y,
+        width: distance / 20,
+        angle: Math.random() > 0.5 ? randomAngle : -randomAngle,
+        count: 0,
+        transform,
+        step,
+      });
+
+      if (worms.length > 100) worms.shift();
+    };
+
+    const drawWorm = (worm: Worm) => {
+      if (Math.random() > 0.9) {
+        rotate(worm.step, -worm.angle * 2);
+        worm.angle *= -1;
+      }
+      prepend(worm.transform, worm.step);
+
+      const edge1x = -worm.width * worm.transform.c + worm.transform.tx;
+      const edge1y = -worm.width * worm.transform.d + worm.transform.ty;
+      const mid1x = (worm.c1x + edge1x) / 2;
+      const mid1y = (worm.c1y + edge1y) / 2;
+      const edge2x = worm.width * worm.transform.c + worm.transform.tx;
+      const edge2y = worm.width * worm.transform.d + worm.transform.ty;
+      const mid2x = (worm.c2x + edge2x) / 2;
+      const mid2y = (worm.c2y + edge2y) / 2;
+
+      context.beginPath();
+      context.moveTo(worm.p1x, worm.p1y);
+      context.quadraticCurveTo(worm.c1x, worm.c1y, mid1x, mid1y);
+      context.lineTo(mid2x, mid2y);
+      context.quadraticCurveTo(worm.c2x, worm.c2y, worm.p2x, worm.p2y);
+      context.closePath();
+      context.fillStyle = interactiveBackdropColors.ribbon;
+      context.fill();
+
+      worm.c1x = edge1x;
+      worm.c1y = edge1y;
+      worm.p1x = mid1x;
+      worm.p1y = mid1y;
+      worm.c2x = edge2x;
+      worm.c2y = edge2y;
+      worm.p2x = mid2x;
+      worm.p2y = mid2y;
+    };
+
+    const checkPointer = () => {
+      if (!hasPreviousPoint) {
+        previous.x = mouse.x;
+        previous.y = mouse.y;
+        hasPreviousPoint = true;
+        return;
+      }
+
+      const vx = mouse.x - previous.x;
+      const vy = mouse.y - previous.y;
+      const distance = Math.hypot(vx, vy);
+      if (distance < 2) return;
+
+      createWorm(mouse.x, mouse.y, vx, vy, Math.min(distance, 50) + 8);
+      context.beginPath();
+      context.strokeStyle = interactiveBackdropColors.cursorTrail;
+      context.lineWidth = 1;
+      context.moveTo(previous.x, previous.y);
+      context.lineTo(mouse.x, mouse.y);
+      context.stroke();
+      previous.x = mouse.x;
+      previous.y = mouse.y;
+    };
+
+    const draw = (time: number) => {
+      animationFrame = 0;
+      if (time - lastFrame < 20) {
+        animationFrame = window.requestAnimationFrame(draw);
+        return;
+      }
+      lastFrame = time;
+
+      if (hasPendingPointer) {
+        checkPointer();
+        hasPendingPointer = false;
+      }
+
+      for (let index = worms.length - 1; index >= 0; index -= 1) {
+        const worm = worms[index];
+        if (!worm) continue;
+        if (worm.count >= 80) {
+          worms.splice(index, 1);
+          continue;
+        }
+        drawWorm(worm);
+        worm.count += 1;
+      }
+
+      if (worms.length || hasPendingPointer) animationFrame = window.requestAnimationFrame(draw);
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
+      if (event.pointerType !== 'mouse' && event.pointerType !== 'pen') return;
+      mouse.x = event.clientX;
+      mouse.y = event.clientY + window.scrollY;
+      hasPendingPointer = true;
+      resetFadeTimer();
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(draw);
+    };
+
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    const shell = document.querySelector('.swp-shell');
+    if (shell) new ResizeObserver(resize).observe(shell);
+  }
+</script>

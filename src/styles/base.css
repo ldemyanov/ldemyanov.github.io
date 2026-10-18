@@ -98,6 +98,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   position: relative;
 }
 
+body.home-page .swp-shell {
+  z-index: 1;
+  background: transparent;
+}
+
 .wrap {
   padding-left: var(--pad);
   padding-right: var(--pad);

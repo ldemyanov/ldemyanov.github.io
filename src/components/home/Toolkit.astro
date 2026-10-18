@@ -17,7 +17,13 @@ import { toolkit, toolkitHeading } from '~/data/toolkit';
       {
         toolkit.map((item, i) => (
           <div class:list={['kit-item', 'rev', i % 4 > 0 && `rev-d${i % 4}`]}>
-            <Icon name={item.icon} class="ic-lg" />
+            {item.icon === 'database-search' || item.icon === 'workflow' || item.icon === 'server-cog' ? (
+              <svg class="ic-lg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <use href={`/icons/${item.icon}.svg#${item.icon}-icon`}></use>
+              </svg>
+            ) : (
+              <Icon name={item.icon} class="ic-lg" />
+            )}
             <b>{item.title}</b>
             <span>{item.detail}</span>
           </div>

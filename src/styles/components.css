@@ -66,7 +66,7 @@
 .btn-ink > i { background: var(--swp-lime); color: var(--swp-ink); }
 
 .btn-outline {
-  background: transparent;
+  background: var(--swp-shell);
   color: var(--swp-ink);
   box-shadow: inset 0 0 0 1.5px var(--swp-line);
 }
@@ -75,20 +75,20 @@
 
 /* Outline button sitting on the lime CTA panel */
 .btn-outline-ink {
-  background: transparent;
+  background: var(--swp-lime);
   color: var(--swp-ink);
   box-shadow: inset 0 0 0 1.5px rgba(16, 17, 16, 0.25);
 }
-.btn-outline-ink > i { background: rgba(16, 17, 16, 0.08); color: var(--swp-ink); }
+.btn-outline-ink > i { background: var(--swp-shell); color: var(--swp-ink); }
 .btn-outline-ink:hover { box-shadow: inset 0 0 0 1.5px var(--swp-ink); }
 
 .btn-ghost-light {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--swp-graphite);
   color: #fff;
   box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.22);
 }
 .btn-ghost-light > i { background: var(--swp-lime); color: var(--swp-ink); }
-.btn-ghost-light:hover { background: rgba(255, 255, 255, 0.18); }
+.btn-ghost-light:hover { background: var(--swp-ink); }
 
 /* ---- Section heading pattern ------------------------------ */
 .sh {

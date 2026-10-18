@@ -54,6 +54,7 @@ const { bodyClass, ...seo } = Astro.props;
   <body class={bodyClass}>
     <a class="skip-link" href="#main">Перейти к содержимому</a>
     <IconSprite />
+    <slot name="backdrop" />
 
     <div class="swp-shell">
       <Header />
@@ -104,7 +105,7 @@ const { bodyClass, ...seo } = Astro.props;
 
         const update = () => {
           const y = window.scrollY;
-          hdr?.classList.toggle('stuck', y > 12);
+          hdr?.classList.toggle('stuck', y > 10);
           totop?.classList.toggle('on', y > 700);
           ticking = false;
         };

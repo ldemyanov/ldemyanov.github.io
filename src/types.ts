@@ -101,7 +101,7 @@ export interface Stat {
 }
 
 export interface ToolkitItem {
-  icon: IconName;
+  icon: IconName | 'database-search' | 'workflow' | 'server-cog';
   title: string;
   detail: string;
 }
