@@ -22,7 +22,7 @@
 
   /* Typography */
   --font-display: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-body: 'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Layout */
   --pad: clamp(20px, calc((100vw - 1320px) / 2), 300px);

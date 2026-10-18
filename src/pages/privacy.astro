@@ -2,59 +2,61 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import siteConfig from '~/config/site';
 
-const updated = 'This template has not been dated yet.';
+const updated = '18 октября 2026 года';
 ---
 
 <PageLayout
-  title="Privacy"
-  heading="Privacy"
-  eyebrow="Legal"
-  intro="What this site collects, which is close to nothing."
-  description={`How ${siteConfig.name} handles visitor data.`}
+  title="Конфиденциальность"
+  heading="Политика конфиденциальности"
+  eyebrow="Правовая информация"
+  intro="Какие технические данные могут обрабатываться при посещении сайта и как устроена связь с его владельцем."
+  description={`Политика конфиденциальности сайта ${siteConfig.name}. Информация о хостинге, внешних сервисах и обращениях.`}
 >
   <section class="wrap sec" style="padding-top:0">
     <div class="prose rev">
-      <p class="form-note">
-        <strong>Template — replace before you publish.</strong> This page is a starting
-        point written for the demo site, not legal advice. Edit it in
-        <code>src/pages/privacy.astro</code> to describe what your deployment actually
-        does, and have it reviewed if your jurisdiction requires it.
-      </p>
-
-      <h2>What this site collects</h2>
       <p>
-        As shipped, this theme is a static site. It sets no cookies, runs no analytics and
-        loads no third-party scripts. Fonts are served from this domain rather than from a
-        font CDN, so no font provider sees your visit.
+        Эта страница описывает обработку данных при использовании портфолио Леонида Демьянова.
+        Она относится к этому сайту и не заменяет правила сторонних сервисов, на которые ведут ссылки.
       </p>
 
-      <h2>Server logs</h2>
+      <h2>Владелец сайта и связь</h2>
       <p>
-        Whoever hosts the site will keep standard access logs — IP address, user agent,
-        requested URL and timestamp. Those are the host's records, kept under the host's
-        retention policy. Name your host here and link to their privacy policy.
+        По вопросам конфиденциальности можно написать на
+        <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.
       </p>
 
-      <h2>The contact form</h2>
+      <h2>Хостинг и технические данные</h2>
       <p>
-        The contact form is not connected to anything by default. If you connect it to a
-        form provider, that provider receives whatever the form submits — typically a name,
-        an email address and a message — and processes it under their own terms. Name the
-        provider here and link to their policy.
+        Сайт размещён на GitHub Pages по адресу <a href="https://ldemyanov.github.io">ldemyanov.github.io</a>.
+        Сайт не использует CDN, прокси и другие промежуточные сервисы. При загрузке страниц GitHub
+        может обрабатывать технические сведения о запросах и устройстве, например IP-адрес,
+        сведения о браузере, дату и время запроса, посещённые страницы и источник перехода. Эти
+        данные обрабатываются GitHub по
+        <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">политике конфиденциальности GitHub</a>.
       </p>
 
-      <h2>Anything you add</h2>
+      <h2>Сторонние сервисы</h2>
       <p>
-        Analytics, embedded video, a comment system, a newsletter widget or a chat bubble
-        each introduce their own data collection. If you add one, describe it here.
+        Шрифты IBM Plex Sans, Unbounded и Space Grotesk хранятся вместе с сайтом и загружаются с GitHub Pages.
+        Сайт не подключает внешние шрифтовые сервисы, аналитику, счётчики и другие сторонние инструменты.
+        Ссылки на GitHub, мессенджеры и другие внешние ресурсы ведут на сторонние сайты, где действуют
+        собственные правила обработки данных.
       </p>
 
-      <h2>Getting in touch</h2>
+      <h2>Обращения</h2>
       <p>
-        Questions about any of this can go to <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.
+        Форма обратной связи и автоматическая обработка заявок пока не подключены. Сайт не принимает,
+        не отправляет и не хранит данные через форму. Если вы самостоятельно свяжетесь со мной по
+        электронной почте или телефону, сообщение будет передано через выбранного вами оператора связи
+        или почтовый сервис; сайт не получает содержание такого обращения.
       </p>
 
-      <p class="mini muted">{updated}</p>
+      <p>
+        Если в будущем на сайте появится обработка заявок, сведения о собираемых данных, целях,
+        получателях и сроках хранения будут добавлены сюда.
+      </p>
+
+      <p class="mini muted">Последнее обновление: {updated}</p>
     </div>
   </section>
 </PageLayout>

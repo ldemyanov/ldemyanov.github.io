@@ -83,23 +83,20 @@ record whatever your own images need.
 
 ## Fonts
 
-Both families are bundled as self-hosted WOFF2 variable fonts in
-`public/fonts/`, so no request ever leaves your domain for a font.
+Unbounded, IBM Plex Sans and Space Grotesk are self-hosted in `public/fonts/`.
 
 | Family | Files | Licence | Upstream |
 | --- | --- | --- | --- |
 | Space Grotesk | `space-grotesk-latin.woff2`, `space-grotesk-latin-ext.woff2` | [SIL Open Font License 1.1](public/fonts/OFL-SpaceGrotesk.txt) | [floriankarsten/space-grotesk](https://github.com/floriankarsten/space-grotesk) |
-| Inter Tight | `inter-tight-latin.woff2`, `inter-tight-latin-ext.woff2` | [SIL Open Font License 1.1](public/fonts/OFL-InterTight.txt) | [rsms/inter-tight](https://github.com/rsms/inter-tight) |
+| Unbounded | `unbounded-variable.ttf` | [SIL Open Font License 1.1](public/fonts/OFL-Unbounded.txt) | [google/fonts](https://github.com/google/fonts/tree/main/ofl/unbounded) |
+| IBM Plex Sans | `ibm-plex-sans-variable.ttf` | [SIL Open Font License 1.1](public/fonts/OFL-IBMPlexSans.txt) | [google/fonts](https://github.com/google/fonts/tree/main/ofl/ibmplexsans) |
 
 The OFL permits bundling and redistribution with a project, including
-commercially, provided the licence text travels with the fonts — which is why
-`OFL-SpaceGrotesk.txt` and `OFL-InterTight.txt` sit beside them. Do not sell
-the font files on their own, and do not rename the families.
+commercially, provided the licence text travels with locally bundled fonts.
+Do not sell the font files on their own, and do not rename the families.
 
-Only the `latin` and `latin-ext` subsets are included. If you need Cyrillic,
-Greek or Vietnamese, download those subsets from the upstream projects, drop
-them in `public/fonts/`, and add matching `@font-face` blocks with the right
-`unicode-range` in `src/styles/fonts.css`.
+The local Space Grotesk files contain `latin` and `latin-ext` subsets. IBM Plex Sans
+and Unbounded include Cyrillic glyphs.
 
 ## Icons and artwork
 
@@ -124,7 +121,6 @@ All of it is MIT along with the rest of the theme: use it, change it, ship it.
 | --- | --- |
 | [astro](https://github.com/withastro/astro) | MIT |
 | [@astrojs/sitemap](https://github.com/withastro/astro) | MIT |
-| [@astrojs/rss](https://github.com/withastro/astro) | MIT |
 | [@astrojs/check](https://github.com/withastro/astro) | MIT |
 | [typescript](https://github.com/microsoft/TypeScript) | Apache-2.0 |
 

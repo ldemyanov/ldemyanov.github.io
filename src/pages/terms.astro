@@ -1,59 +1,61 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 import siteConfig from '~/config/site';
+
+const updated = '18 октября 2026 года';
 ---
 
 <PageLayout
-  title="Terms"
-  heading="Terms"
-  eyebrow="Legal"
-  intro="The ordinary terms that come with a portfolio site."
-  description={`Terms of use for ${siteConfig.name}.`}
+  title="Условия использования"
+  heading="Условия использования сайта"
+  eyebrow="Правовая информация"
+  intro="Правила использования материалов и информации, опубликованных в портфолио."
+  description={`Условия использования сайта-портфолио ${siteConfig.name}.`}
 >
   <section class="wrap sec" style="padding-top:0">
     <div class="prose rev">
-      <p class="form-note">
-        <strong>Template — replace before you publish.</strong> This page is a starting
-        point written for the demo site, not legal advice. Edit it in
-        <code>src/pages/terms.astro</code>.
+      <h2>О сайте</h2>
+      <p>
+        Сайт представляет опыт, проекты и услуги Леонида Демьянова. Описания проектов приведены
+        для знакомства с выполненной работой и не являются гарантией доступности конкретной услуги
+        или результата в другом проекте.
       </p>
 
-      <h2>Using this site</h2>
+      <h2>Материалы и права</h2>
       <p>
-        This is a portfolio. You are welcome to read it, link to it and quote from it with
-        attribution. Republishing whole pages as your own is not welcome.
+        Права на названия, логотипы и материалы клиентов принадлежат их правообладателям. Их
+        размещение в портфолио служит для идентификации проектов и не означает одобрения сайта
+        или услуг его владельца со стороны этих компаний.
+      </p>
+      <p>
+        Перед копированием или повторной публикацией текстов, фотографий и других материалов сайта
+        получите разрешение у соответствующего правообладателя.
       </p>
 
-      <h2>The work shown here</h2>
+      <h2>Информация об услугах</h2>
       <p>
-        Case studies describe demo projects created for this theme. On a real deployment,
-        replace this paragraph with a note about which work is shown with client
-        permission and who holds the rights to it.
+        Сведения об услугах и проектах носят информационный характер. Состав работ, сроки, стоимость,
+        порядок оплаты и передачи результата согласуются отдельно до начала сотрудничества.
       </p>
 
-      <h2>Accuracy</h2>
+      <h2>Внешние ссылки</h2>
       <p>
-        Content is published in good faith and may go out of date. Nothing here is a
-        contractual offer; scope and price are agreed in writing before any work starts.
+        Сайт содержит ссылки на внешние ресурсы. Их содержание и обработку данных регулируют правила
+        соответствующих сайтов; владелец этого портфолио ими не управляет.
       </p>
 
-      <h2>Links out</h2>
+      <h2>Изменение условий</h2>
       <p>
-        External links are provided for convenience. The sites they point at are not under
-        this site's control and are not its responsibility.
+        Условия могут обновляться вместе с содержанием сайта. Актуальная версия доступна на этой странице.
       </p>
 
-      <h2>Liability</h2>
+      <h2>Связь</h2>
       <p>
-        The site is provided as is. To the extent the law allows, no liability is accepted
-        for loss arising from its use. Local consumer law may give you rights that cannot
-        be excluded, and nothing here limits those.
+        По вопросам об условиях использования напишите на
+        <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.
       </p>
 
-      <h2>Questions</h2>
-      <p>
-        Send them to <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.
-      </p>
+      <p class="mini muted">Последнее обновление: {updated}</p>
     </div>
   </section>
 </PageLayout>

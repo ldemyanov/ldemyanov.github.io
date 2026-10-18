@@ -7,9 +7,9 @@ import sitemap from '@astrojs/sitemap';
  *
  * Change `DEFAULT_SITE` (or set a `SITE_URL` environment variable at build time)
  * before deploying — it is used for canonical URLs, Open Graph tags, the
- * sitemap, the RSS feed and robots.txt.
+ * sitemap and robots.txt.
  */
-const DEFAULT_SITE = 'https://swp-freelancer-portfolio.vercel.app';
+const DEFAULT_SITE = 'https://ldemyanov.github.io';
 
 export default defineConfig({
   site: process.env.SITE_URL ?? DEFAULT_SITE,

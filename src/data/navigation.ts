@@ -29,6 +29,5 @@ export const footerNav = {
   legal: [
     { label: 'Конфиденциальность', href: '/privacy/' },
     { label: 'Условия', href: '/terms/' },
-    { label: 'RSS', href: '/rss.xml' },
   ] satisfies NavItem[],
 };

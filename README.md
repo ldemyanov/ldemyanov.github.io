@@ -20,7 +20,7 @@ Source: [github.com/Scintillaweb/swp-freelancer-portfolio](https://github.com/Sc
   JavaScript on the heaviest page — about 2 KB over the wire.
 - **Twelve page routes** — home, about, services (index + detail), work
   (index + case study), journal (index + article), contact, privacy, terms and
-  a custom 404 — plus `rss.xml`, `robots.txt` and a sitemap. The demo content
+  a custom 404 — plus `robots.txt` and a sitemap. The demo content
   builds out to 27 pages.
 - **Content collections** for projects, services and journal posts, with typed
   frontmatter schemas and draft support.
@@ -28,7 +28,7 @@ Source: [github.com/Scintillaweb/swp-freelancer-portfolio](https://github.com/Sc
   defaults all live in `src/config/site.ts`.
 - **Case studies** with results figures, client facts, services, tooling and a
   next-project link.
-- **Journal** with categories, tags, reading time, an RSS feed and BlogPosting
+- **Journal** with categories, tags, reading time and BlogPosting
   structured data.
 - **Filterable work grid** built from the categories actually in use, with an
   `aria-live` result count.
@@ -58,7 +58,7 @@ Source: [github.com/Scintillaweb/swp-freelancer-portfolio](https://github.com/Sc
 | Language | TypeScript (strict) |
 | Styling | Plain CSS with custom properties — no preprocessor, no utility framework |
 | Content | Astro content collections (Markdown) |
-| Integrations | `@astrojs/sitemap`, `@astrojs/rss` |
+| Integrations | `@astrojs/sitemap` |
 | Tooling | `@astrojs/check` for type checking |
 
 Five dependencies in total. Nothing else is installed.
@@ -162,12 +162,12 @@ Open **`src/config/site.ts`**. It holds the name, the person, the role, the
 description, the email, the phone number, the location, the availability line,
 the social links, the footer blurb, the copyright holder, the theme colour and
 the default social image. Change it and the header, footer, hero, contact page,
-metadata, structured data, RSS feed and sitemap all follow.
+metadata, structured data and sitemap all follow.
 
 ### Site URL
 
 Set `site` in **`astro.config.mjs`** — it feeds canonical URLs, Open Graph tags,
-the sitemap, the RSS feed and `robots.txt`. You can also override it per build:
+the sitemap and `robots.txt`. You can also override it per build:
 
 ```bash
 SITE_URL=https://example.com npm run build
@@ -574,7 +574,7 @@ attribution required.
 Bundled third-party assets keep their own licences:
 
 - **Photographs** — CC0 1.0 Public Domain (Pxhere, StockSnap)
-- **Space Grotesk, Inter Tight** — SIL Open Font License 1.1
+- **Space Grotesk, Unbounded, IBM Plex Sans** — SIL Open Font License 1.1
 - **`header-logo.webp`** — the demo brand's own mark, not covered by the MIT
   grant. Replace it with your own logo if you use it.
 
@@ -587,8 +587,8 @@ links and the OFL texts shipped alongside the fonts.
 - [Pxhere](https://pxhere.com) and [StockSnap](https://stocksnap.io) — CC0 photographs
 - [Space Grotesk](https://github.com/floriankarsten/space-grotesk) by Florian
   Karsten — display typeface
-- [Inter Tight](https://github.com/rsms/inter-tight) by Rasmus Andersson and
-  the Inter Project Authors — body typeface
+- [Unbounded](https://github.com/google/fonts/tree/main/ofl/unbounded) — heading typeface
+- [IBM Plex Sans](https://github.com/google/fonts/tree/main/ofl/ibmplexsans) — body typeface
 
 Icons, artwork, layout and demo copy were made for this theme.
 

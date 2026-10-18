@@ -7,7 +7,7 @@ import type { SiteConfig } from '~/types';
  *
  * Здесь собран демонстрационный контент. Замените его своим — и данные
  * в шапке, подвале, первом экране, на странице контактов, в метаданных,
- * структурированных данных, RSS-ленте и карте сайта обновятся автоматически.
+ * структурированных данных и карте сайта обновятся автоматически.
  *
  * Канонический URL задаётся в `astro.config.mjs` (параметр `site`), а сюда
  * передаётся через `import.meta.env.SITE`.
@@ -19,7 +19,7 @@ export const siteConfig: SiteConfig = {
   role: 'Fullstack-разработчик на TypeScript',
   title: 'Портфолио Fullstack-разработчика',
   description: 'Портфолио Леонида Демьянова, Fullstack-разработчика из Астаны. Создаю сайты, веб-приложения, интеграции и решения на основе ИИ для цифровых продуктов и бизнеса.',
-  url: import.meta.env.SITE ?? 'https://swp-freelancer-portfolio.vercel.app',
+  url: import.meta.env.SITE ?? 'https://ldemyanov.github.io',
   ogImage: '/og-default.png',
   locale: 'ru',
   themeColor: '#c8f14d',
