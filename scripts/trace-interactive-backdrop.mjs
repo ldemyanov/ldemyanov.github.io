@@ -5,7 +5,7 @@ import { once } from 'node:events';
 import { join, resolve } from 'node:path';
 import { launchChrome } from './backdrop-trace/chrome.mjs';
 import { connectCdp } from './backdrop-trace/cdp.mjs';
-import { preparePage, runBenchmark, warmUp } from './backdrop-trace/benchmark.mjs';
+import { evaluate, preparePage, runBenchmark, warmUp } from './backdrop-trace/benchmark.mjs';
 import { ensurePreview } from './backdrop-trace/preview.mjs';
 
 const categories = [
@@ -18,17 +18,17 @@ const categories = [
 /**
  * Разбирает аргументы командной строки и проверяет адрес локального сайта.
  * @param {string[]} args Аргументы после имени скрипта.
- * @returns {{url: string, label: string, chrome?: string, width: number, height: number}} Настройки прогона.
+ * @returns {{url: string, label: string, chrome?: string, width: number, height: number, dpr: number}} Настройки прогона.
  */
 function parseOptions(args) {
   const options = {
-    url: 'http://127.0.0.1:4322/', label: 'run', width: 1440, height: 900,
+    url: 'http://127.0.0.1:4322/', label: 'run', width: 1440, height: 900, dpr: 1,
   };
   for (let index = 0; index < args.length; index += 2) {
     const key = args[index];
     const value = args[index + 1];
-    if (!value || !['--url', '--label', '--chrome', '--width', '--height'].includes(key)) {
-      throw new Error(`Неверный аргумент ${key ?? ''}. Используйте --url, --label, --chrome, --width, --height.`);
+    if (!value || !['--url', '--label', '--chrome', '--width', '--height', '--dpr'].includes(key)) {
+      throw new Error(`Неверный аргумент ${key ?? ''}. Используйте --url, --label, --chrome, --width, --height, --dpr.`);
     }
     options[key.slice(2)] = value;
   }
@@ -41,6 +41,10 @@ function parseOptions(args) {
     if (!Number.isInteger(options[key]) || options[key] < 320 || options[key] > 4096) {
       throw new Error(`${key} должен быть целым числом от 320 до 4096.`);
     }
+  }
+  options.dpr = Number(options.dpr);
+  if (!Number.isFinite(options.dpr) || options.dpr < 1 || options.dpr > 3) {
+    throw new Error('dpr должен быть числом от 1 до 3.');
   }
   if (!/^[a-zA-Z0-9_-]+$/.test(options.label)) throw new Error('--label допускает только латинские буквы, цифры, _ и -.');
   return { ...options, url: url.href };
@@ -91,8 +95,18 @@ async function main(options) {
     if (preview.started) console.log(`Preview запущен: ${options.url}`);
     chrome = await launchChrome(options);
     cdp = await connectCdp(chrome.webSocketUrl);
-    await preparePage(cdp, options.url, options.width, options.height);
+    await preparePage(cdp, options.url, options.width, options.height, options.dpr);
     await warmUp(cdp, options.width, options.height);
+    const canvas = await evaluate(cdp, `(() => {
+      const element = document.querySelector('#interactive-backdrop');
+      return {
+        bufferWidth: element.width,
+        bufferHeight: element.height,
+        cssWidth: parseFloat(element.style.width),
+        cssHeight: parseFloat(element.style.height),
+        browserDpr: window.devicePixelRatio,
+      };
+    })()`);
     console.log(`Записываю 300 движений: ${options.url}`);
     await cdp.send('Tracing.start', {
       categories, transferMode: 'ReturnAsStream', streamFormat: 'json', streamCompression: 'gzip',
@@ -112,7 +126,8 @@ async function main(options) {
       label: options.label,
       url: options.url,
       chrome: chrome.version,
-      viewport: { width: options.width, height: options.height, devicePixelRatio: 1 },
+      viewport: { width: options.width, height: options.height, devicePixelRatio: options.dpr },
+      canvas,
       ...benchmark,
       traceFile: `${base}.json.gz`,
     }, null, 2) + '\n');

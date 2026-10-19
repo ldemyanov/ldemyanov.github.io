@@ -36,13 +36,14 @@ export async function evaluate(cdp, expression, awaitPromise = false) {
  * @param {string} url Адрес сайта для записи.
  * @param {number} width Ширина viewport в CSS-пикселях.
  * @param {number} height Высота viewport в CSS-пикселях.
+ * @param {number} dpr Плотность пикселей, эмулируемая браузером.
  * @returns {Promise<void>} Страница подготовлена для записи.
  */
-export async function preparePage(cdp, url, width, height) {
+export async function preparePage(cdp, url, width, height, dpr) {
   await cdp.send('Page.enable');
   await cdp.send('Runtime.enable');
   await cdp.send('Emulation.setDeviceMetricsOverride', {
-    width, height, deviceScaleFactor: 1, mobile: false,
+    width, height, deviceScaleFactor: dpr, mobile: false,
   });
   await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'no-preference' }] });
   const loaded = cdp.waitFor('Page.loadEventFired');

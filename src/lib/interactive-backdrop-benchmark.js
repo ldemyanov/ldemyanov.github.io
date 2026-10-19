@@ -111,3 +111,5 @@ function handleBackdropBenchmarkShortcut(event) {
 }
 
 window.addEventListener('keydown', handleBackdropBenchmarkShortcut);
+
+export {};

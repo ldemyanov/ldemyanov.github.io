@@ -34,11 +34,10 @@
 
   // Без canvas, 2D-контекста или разрешения на движение слушатели не нужны.
   if (canvas && context && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    // Координаты и размеры хранятся в CSS-пикселях; pixelRatio нужен только
-    // для чёткости изображения на экранах с высокой плотностью пикселей.
+    // Буфер canvas использует один пиксель на CSS-пиксель независимо от DPR экрана.
     let width = 0;
     let height = 0;
-    let pixelRatio = 1;
+    const pixelRatio = 1;
     // Одновременно выполняется не более одного цикла requestAnimationFrame.
     let animationFrame = 0;
     let lastFrame = 0;
@@ -53,13 +52,12 @@
     const worms: Worm[] = [];
 
     /**
-     * Подгоняет внутреннее разрешение canvas под страницу и плотность экрана.
+     * Подгоняет внутреннее разрешение canvas под размер страницы при DPR 1.
      * Переназначение width/height очищает рисунок, поэтому размеры меняются
      * только при необходимости. Контекст возвращается к CSS-пикселям.
      * @returns Ничего; меняет размеры canvas и масштаб контекста.
      */
     const resize = () => {
-      pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
       width = Math.max(window.innerWidth, document.documentElement.scrollWidth);
       height = Math.max(window.innerHeight, document.documentElement.scrollHeight);
       const canvasWidth = Math.round(width * pixelRatio);
