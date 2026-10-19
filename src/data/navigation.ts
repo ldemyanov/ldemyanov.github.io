@@ -8,21 +8,21 @@ import type { NavItem } from '~/types';
  */
 export const primaryNav: NavItem[] = [
   { label: 'Главная', href: '/' },
-  { label: 'Обо мне', href: '/about/', anchor: '#about' },
-  { label: 'Услуги', href: '/services/', anchor: '#services' },
-  { label: 'Работы', href: '/work/', anchor: '#work' },
+  { label: 'Обо мне', href: '/#about', anchor: '#about' },
+  { label: 'Услуги', href: '/#services', anchor: '#services' },
+  { label: 'Работы', href: '/work/' },
   { label: 'Контакты', href: '/contact/' },
 ];
 
 /** Extra links shown only in the mobile drawer. */
 export const mobileExtraNav: NavItem[] = [
-  { label: 'Технологии', href: '/about/#toolkit' },
+  { label: 'Технологии', href: '/#toolkit', anchor: '#toolkit' },
 ];
 
 export const footerNav = {
   explore: [
-    { label: 'Обо мне', href: '/about/' },
-    { label: 'Услуги', href: '/services/' },
+    { label: 'Обо мне', href: '/#about' },
+    { label: 'Услуги', href: '/#services' },
     { label: 'Проекты', href: '/work/' },
     { label: 'Контакты', href: '/contact/' },
   ] satisfies NavItem[],

@@ -51,7 +51,7 @@ function target(href: string, anchor?: string) {
         [...primaryNav, ...mobileExtraNav].map((item) => {
           const s = state(item.href);
           return (
-            <a href={item.href} aria-current={s === 'page' ? 'page' : undefined}>
+            <a href={target(item.href, item.anchor)} aria-current={s === 'page' ? 'page' : undefined}>
               {item.label}
             </a>
           );

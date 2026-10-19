@@ -23,7 +23,7 @@ const { number, icon, title, excerpt, tags, isNew = false, class: className } = 
       {isNew && <span class="svc-new">Новое</span>}
     </div>
   </div>
-  <h3><a class="stretch" href="/contact/">{title}</a></h3>
+  <h3>{title}</h3>
   <p class="muted">{excerpt}</p>
   <div class="svc-tags">
     {tags.map((tag) => <span>{tag}</span>)}

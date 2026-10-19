@@ -33,7 +33,6 @@ const jsonLd = graph([
   personSchema(siteConfig),
   breadcrumbSchema([
     { name: 'Главная', url: `${siteConfig.url}/` },
-    { name: 'Услуги', url: `${siteConfig.url}/services/` },
     { name: d.title, url: `${siteConfig.url}/services/${service.id}/` },
   ]),
 ]);
@@ -99,9 +98,9 @@ const jsonLd = graph([
           <b>Следующая услуга</b>
           <span>{next.data.title}</span>
         </a>
-        <a href="/services/">
-          <b>Другие услуги</b>
-          <span>Все услуги</span>
+        <a href="/#services">
+          <b>Услуги на главной</b>
+          <span>Посмотреть направления</span>
         </a>
       </div>
     </section>

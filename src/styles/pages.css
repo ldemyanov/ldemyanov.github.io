@@ -85,11 +85,12 @@
 
 .case-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
   gap: clamp(30px, 4.4vw, 68px);
   align-items: start;
 }
 .case-aside {
+  min-width: 0;
   display: grid;
   gap: 22px;
   position: sticky;
@@ -97,7 +98,15 @@
   background: var(--swp-mist);
   border-radius: var(--r-lg);
   padding: clamp(24px, 2.4vw, 30px);
+  width: 100%;
 }
+.case-fact { min-width: 0; }
+.case-fact li { overflow-wrap: anywhere; }
+.case-aside .btn {
+  justify-self: start;
+  white-space: nowrap;
+}
+.case-aside .btn > span { min-width: auto; overflow-wrap: normal; }
 .case-fact b {
   display: block;
   font-family: var(--font-display);
@@ -135,7 +144,7 @@
 .result span { display: block; margin-top: 10px; font-size: 13.8px; color: rgba(255, 255, 255, 0.62); line-height: 1.5; }
 
 @media (max-width: 900px) {
-  .case-grid { grid-template-columns: 1fr; }
+  .case-grid { grid-template-columns: minmax(0, 1fr); }
   .case-aside { position: static; }
 }
 

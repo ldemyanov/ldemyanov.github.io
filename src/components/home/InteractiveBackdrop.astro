@@ -61,7 +61,7 @@
      * @returns Ничего; меняет размеры canvas и масштаб контекста.
      */
     const resize = () => {
-      width = Math.max(window.innerWidth, document.documentElement.scrollWidth);
+      width = document.documentElement.clientWidth;
       const footer = document.querySelector<HTMLElement>('.ftr');
       const footerTop = footer?.getBoundingClientRect().top;
       // Не используем scrollHeight: размер самого canvas может удержать старую высоту.
