@@ -6,7 +6,7 @@ export const toolkit: ToolkitItem[] = [
   { icon: 'workflow', title: 'Управление состоянием и данными', detail: 'Redux · MobX · Zustand · TanStack Query' },
   { icon: 'server-cog', title: 'Серверная часть и ORM', detail: 'NestJS · Sequelize · Prisma' },
   { icon: 'chart', title: 'Базы данных и очереди', detail: 'PostgreSQL · MongoDB · RabbitMQ' },
-  { icon: 'database-search', title: 'Поиск и аналитика', detail: 'Elasticsearch · Kibana' },
+  { icon: 'database-search', title: 'Поиск логов и аналитика', detail: 'Elasticsearch · Kibana' },
   { icon: 'grid', title: 'Сборка и микрофронтенды', detail: 'Webpack · Module Federation · Vite · Rollup' },
   { icon: 'flag', title: 'Контейнеризация', detail: 'Docker' },
 ];

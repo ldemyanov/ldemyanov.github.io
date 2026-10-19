@@ -637,6 +637,9 @@ body.home-page .svc-card:not(:hover):not(:focus-within),
 body.home-page .work-card {
   background: color-mix(in srgb, var(--swp-mist) 68%, transparent);
 }
+body.home-page .kit {
+  background: color-mix(in srgb, #9999991f 68%, transparent);
+}
 .kit-grid {
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
@@ -662,6 +665,11 @@ body.home-page .work-card {
   overflow-wrap: anywhere;
 }
 .kit-item span { min-width: 0; font-size: 12.8px; color: var(--swp-slate); line-height: 1.5; overflow-wrap: anywhere; }
+
+@media (min-width: 701px) {
+  .kit-heading .sh-l { max-width: 72ch; }
+  .kit-heading .lead { max-width: 62.4ch; }
+}
 
 @media (max-width: 1100px) {
   .kit-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }

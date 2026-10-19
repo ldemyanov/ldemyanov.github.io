@@ -79,7 +79,7 @@ export const about = {
 
 export const servicesHeading = {
   eyebrow: 'Услуги',
-  title: 'Разработка для бизнеса и продуктовых команд.',
+  title: 'Разработка в фриланс формате.',
   ctaLabel: 'Обсудить задачу',
   ctaHref: '/contact/',
 };

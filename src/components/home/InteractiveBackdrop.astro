@@ -43,7 +43,10 @@
     let lastFrame = 0;
     let fadeTimer = 0;
     let clearTimer = 0;
+    let resizeTimer = 0;
     let initialized = false;
+    let hasCanvasDrawing = false;
+    let resizeObserver: ResizeObserver | null = null;
     // Первое положение указателя задаёт начало линии, но ещё ничего не рисует.
     let hasPreviousPoint = false;
     let hasPendingPointer = false;
@@ -53,22 +56,89 @@
 
     /**
      * Подгоняет внутреннее разрешение canvas под размер страницы при DPR 1.
-     * Переназначение width/height очищает рисунок, поэтому размеры меняются
-     * только при необходимости. Контекст возвращается к CSS-пикселям.
+     * При изменении размеров переносит рисунок в новый буфер; уменьшение холста
+     * естественно обрезает его за новыми границами. Контекст возвращается к CSS-пикселям.
      * @returns Ничего; меняет размеры canvas и масштаб контекста.
      */
     const resize = () => {
       width = Math.max(window.innerWidth, document.documentElement.scrollWidth);
-      height = Math.max(window.innerHeight, document.documentElement.scrollHeight);
+      const footer = document.querySelector<HTMLElement>('.ftr');
+      const footerTop = footer?.getBoundingClientRect().top;
+      // Не используем scrollHeight: размер самого canvas может удержать старую высоту.
+      height = Math.max(0, (footerTop ?? window.innerHeight) + window.scrollY);
       const canvasWidth = Math.round(width * pixelRatio);
       const canvasHeight = Math.round(height * pixelRatio);
       if (canvas.width !== canvasWidth || canvas.height !== canvasHeight) {
+        const previousCanvas = hasCanvasDrawing ? document.createElement('canvas') : null;
+        if (previousCanvas) {
+          previousCanvas.width = canvas.width;
+          previousCanvas.height = canvas.height;
+          previousCanvas.getContext('2d')?.drawImage(canvas, 0, 0);
+        }
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
+        if (previousCanvas) {
+          context.drawImage(previousCanvas, 0, 0);
+          previousCanvas.width = 1;
+          previousCanvas.height = 1;
+        }
       }
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    };
+
+    /**
+     * Объединяет частые события изменения размеров и выполняет пересчёт через 50 мс.
+     * @returns Ничего; планирует единственный отложенный пересчёт canvas.
+     */
+    const scheduleResize = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        resizeTimer = 0;
+        resize();
+      }, 50);
+    };
+
+    /**
+     * Останавливает анимацию и освобождает полноразмерный буфер при скрытии вкладки.
+     * Следы сбрасываются; новый буфер будет создан при следующем движении указателя.
+     * @returns Ничего; отменяет задачи, отключает наблюдение и уменьшает canvas до 1×1.
+     */
+    const releaseCanvasBuffer = () => {
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      window.clearTimeout(fadeTimer);
+      window.clearTimeout(clearTimer);
+      window.clearTimeout(resizeTimer);
+      animationFrame = 0;
+      fadeTimer = 0;
+      clearTimer = 0;
+      resizeTimer = 0;
+      initialized = false;
+      hasCanvasDrawing = false;
+      hasPreviousPoint = false;
+      hasPendingPointer = false;
+      lastFrame = 0;
+      worms.length = 0;
+      window.removeEventListener('resize', scheduleResize);
+      resizeObserver?.disconnect();
+      resizeObserver = null;
+      width = 0;
+      height = 0;
+      canvas.width = 1;
+      canvas.height = 1;
+      canvas.style.width = '1px';
+      canvas.style.height = '1px';
+      canvas.style.opacity = '1';
+      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    };
+
+    /**
+     * Освобождает память скрытой вкладки и ждёт указателя перед повторным выделением буфера.
+     * @returns Ничего; вызывает освобождение при скрытии документа.
+     */
+    const handleVisibilityChange = () => {
+      if (document.hidden) releaseCanvasBuffer();
     };
 
     /**
@@ -86,6 +156,7 @@
         clearTimer = window.setTimeout(() => {
           canvas.width = canvas.width;
           canvas.height = canvas.height;
+          hasCanvasDrawing = false;
           context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
           worms.length = 0;
           canvas.style.transition = 'none';
@@ -122,6 +193,7 @@
       context.moveTo(previous.x, previous.y);
       context.lineTo(mouse.x, mouse.y);
       context.stroke();
+      hasCanvasDrawing = true;
       previous.x = mouse.x;
       previous.y = mouse.y;
     };
@@ -173,14 +245,17 @@
      * @returns Ничего; обновляет позицию и при необходимости запускает кадр.
      */
     const handlePointerMove = (event: PointerEvent) => {
-      if (event.pointerType !== 'mouse' && event.pointerType !== 'pen') return;
+      if (document.hidden || (event.pointerType !== 'mouse' && event.pointerType !== 'pen')) return;
       if (!initialized) {
         initialized = true;
         resize();
-        window.addEventListener('resize', resize, { passive: true });
+        window.addEventListener('resize', scheduleResize, { passive: true });
         // Высота контента может измениться и без изменения размера окна.
         const shell = document.querySelector('.swp-shell');
-        if (shell) new ResizeObserver(resize).observe(shell);
+        if (shell) {
+          resizeObserver = new ResizeObserver(scheduleResize);
+          resizeObserver.observe(shell);
+        }
       }
       mouse.x = event.clientX;
       mouse.y = event.clientY + window.scrollY;
@@ -190,5 +265,6 @@
 
     // До первого движения мыши или пера остаётся маленький исходный буфер.
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibilityChange);
   }
 </script>
