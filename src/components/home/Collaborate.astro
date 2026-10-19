@@ -3,6 +3,8 @@ import Icon from '../Icon.astro';
 import Button from '../Button.astro';
 import siteConfig from '~/config/site';
 import { collaborate } from '~/data/highlights';
+
+const collaborateImageSizes = '(max-width: 880px) 46vw, 24vw';
 ---
 
 <section class="wrap sec" aria-labelledby="collab-h">
@@ -14,6 +16,8 @@ import { collaborate } from '~/data/highlights';
             <div class:list={['mock', i === 0 ? 'mock-a' : 'mock-b']}>
               <img
                 src={image.src}
+                srcset={image.srcSet}
+                sizes={collaborateImageSizes}
                 alt={image.alt}
                 width={image.width}
                 height={image.height}

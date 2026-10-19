@@ -34,7 +34,7 @@ the font files.
 | Family | Files | Licence | Upstream |
 | --- | --- | --- | --- |
 | Unbounded | `unbounded-variable.ttf` | [SIL Open Font Licence 1.1](public/fonts/OFL-Unbounded.txt) | [google/fonts](https://github.com/google/fonts/tree/main/ofl/unbounded) |
-| IBM Plex Sans | `ibm-plex-sans-variable.ttf` | [SIL Open Font Licence 1.1](public/fonts/OFL-IBMPlexSans.txt) | [google/fonts](https://github.com/google/fonts/tree/main/ofl/ibmplexsans) |
+| IBM Plex Sans | `ibm-plex-sans-variable.woff2` | [SIL Open Font Licence 1.1](public/fonts/OFL-IBMPlexSans.txt) | [google/fonts](https://github.com/google/fonts/tree/main/ofl/ibmplexsans) |
 
 ## Portfolio artwork
 

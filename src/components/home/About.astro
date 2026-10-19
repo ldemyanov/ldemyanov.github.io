@@ -19,6 +19,8 @@ const { headingLevel: Heading = 'h2', id = 'about' } = Astro.props;
     <div class="about-img rev">
       <img
         src={about.image.src}
+        srcset={about.image.srcSet}
+        sizes="(max-width: 880px) 100vw, 46vw"
         alt={about.image.alt}
         width={about.image.width}
         height={about.image.height}

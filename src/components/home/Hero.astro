@@ -29,6 +29,8 @@ const techIcons = [
       <div class="hero-photo">
         <img
           src={hero.photo.src}
+          srcset={hero.photo.srcSet}
+          sizes="(max-width: 720px) calc(100vw - 72px), (max-width: 1080px) calc(50vw - 69px), (max-width: 1380px) 29vw, 400px"
           alt={hero.photo.alt}
           width={hero.photo.width}
           height={hero.photo.height}

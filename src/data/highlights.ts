@@ -14,9 +14,10 @@ export const hero = {
   ctaHref: '/contact/',
   photo: {
     src: '/images/hero/leonid-demyanov.webp',
+    srcSet: '/images/hero/leonid-demyanov-520.webp 520w, /images/hero/leonid-demyanov-680.webp 680w, /images/hero/leonid-demyanov-800.webp 800w, /images/hero/leonid-demyanov-900.webp 900w, /images/hero/leonid-demyanov.webp 1025w',
     alt: 'Портрет Леонида Демьянова на нейтральном фоне',
-    width: 960,
-    height: 1210,
+    width: 1025,
+    height: 1024,
   },
   aside: {
     roleLine: ['Разрабатываю сайты и ПО с 2021 года.', 'Более 2 лет разрабатывал крупный продукт в команде'],
@@ -37,12 +38,14 @@ export const collaborate = {
   images: [
     {
       src: '/images/hero/spacecraft.webp',
+      srcSet: '/images/hero/spacecraft-400.webp 400w, /images/hero/spacecraft-620.webp 620w, /images/hero/spacecraft-1000.webp 1000w, /images/hero/spacecraft.webp 2233w',
       alt: 'Коллеги обсуждают работу за планшетом в светлом офисе',
       width: 760,
       height: 760,
     },
     {
       src: '/images/hero/meeting.webp',
+      srcSet: '/images/hero/meeting-400.webp 400w, /images/hero/meeting-620.webp 620w, /images/hero/meeting-1000.webp 1000w, /images/hero/meeting.webp 1812w',
       alt: 'Коллеги обсуждают проект за ноутбуком',
       width: 760,
       height: 760,
@@ -61,9 +64,10 @@ export const about = {
   ],
   image: {
     src: '/images/about/architecture.webp',
+    srcSet: '/images/about/architecture-850.webp 850w, /images/about/architecture.webp 1200w',
     alt: 'Иллюстрация архитектуры веб-продукта: интерфейс, база данных, очередь и API',
     width: 1200,
-    height: 900,
+    height: 896,
   },
   badge: {
     value: 'Полный цикл',

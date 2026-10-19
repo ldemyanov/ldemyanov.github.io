@@ -7,7 +7,7 @@
   font-weight: 100 700;
   font-stretch: 85% 100%;
   font-display: swap;
-  src: url('/fonts/ibm-plex-sans-variable.ttf') format('truetype');
+  src: url('/fonts/ibm-plex-sans-variable.woff2') format('woff2');
 }
 /* Unbounded — variable font with Latin and Cyrillic glyphs */
 @font-face {
@@ -15,5 +15,5 @@
   font-style: normal;
   font-weight: 200 900;
   font-display: swap;
-  src: url('/fonts/unbounded-variable.ttf') format('truetype');
+  src: url('/fonts/unbounded-variable.woff2') format('woff2');
 }
