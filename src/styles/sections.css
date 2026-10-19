@@ -439,7 +439,10 @@
 /* ============================================================
    5. Dark stats band
    ============================================================ */
-.band { background: var(--swp-graphite); color: #fff; }
+.band {
+  background: var(--swp-graphite);
+  color: #fff;
+}
 .band .muted { color: rgba(255, 255, 255, 0.6); }
 .band-h {
   text-align: left;
@@ -619,7 +622,9 @@
 /* ============================================================
    8. Toolkit
    ============================================================ */
-.kit { background: var(--swp-mist); }
+.kit {
+  background: var(--swp-mist);
+}
 body.home-page .kit,
 body.home-page .svc-card:not(:hover):not(:focus-within),
 body.home-page .work-card {
@@ -807,7 +812,18 @@ body.home-page .kit {
 /* ============================================================
    12. Footer
    ============================================================ */
-.ftr { background: var(--swp-ink); color: #fff; padding-top: clamp(52px, 5.4vw, 84px); }
+.ftr {
+  position: relative;
+  z-index: 1;
+  background: var(--swp-ink);
+  color: #fff;
+  padding-top: clamp(52px, 5.4vw, 84px);
+}
+.ftr > .wrap {
+  max-width: var(--shell);
+  margin-left: auto;
+  margin-right: auto;
+}
 .ftr-top {
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr));
@@ -867,6 +883,15 @@ body.home-page .kit {
 .ftr-bot nav { display: flex; gap: 20px; flex-wrap: wrap; }
 .ftr-bot a { transition: color 0.25s var(--ease); }
 .ftr-bot a:hover { color: var(--swp-lime); }
+
+@media (min-width: 1920px) {
+  .band,
+  .kit {
+    margin-left: clamp(1px, calc(50vw - 960px), 30px);
+    margin-right: clamp(1px, calc(50vw - 960px), 30px);
+    border-radius: clamp(1px, calc(50vw - 960px), 30px);
+  }
+}
 
 @media (max-width: 900px) { .ftr-top { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .ftr-top { grid-template-columns: 1fr; } }
