@@ -53,7 +53,12 @@ function prepend(matrix: Matrix, step: Matrix): void {
   const d = step.c * matrix.b + step.d * matrix.d;
   const tx = step.tx * matrix.a + step.ty * matrix.c + matrix.tx;
   const ty = step.tx * matrix.b + step.ty * matrix.d + matrix.ty;
-  Object.assign(matrix, { a, b, c, d, tx, ty });
+  matrix.a = a;
+  matrix.b = b;
+  matrix.c = c;
+  matrix.d = d;
+  matrix.tx = tx;
+  matrix.ty = ty;
 }
 
 /**
@@ -100,10 +105,9 @@ export function createWorm(worms: Worm[], x: number, y: number, vx: number, vy: 
  * для следующего кадра. Иногда угол меняет знак, образуя извилистый рисунок.
  * @param context Контекст canvas, на котором рисуется след.
  * @param worm Изменяемое состояние одного следа.
- * @param color Цвет заливки ленты.
  * @returns Ничего; рисует сегмент и обновляет точки следа.
  */
-export function drawWorm(context: CanvasRenderingContext2D, worm: Worm, color: string): void {
+export function drawWorm(context: CanvasRenderingContext2D, worm: Worm): void {
   if (Math.random() > 0.9) {
     rotate(worm.step, -worm.angle * 2);
     worm.angle *= -1;
@@ -125,7 +129,6 @@ export function drawWorm(context: CanvasRenderingContext2D, worm: Worm, color: s
   context.lineTo(mid2x, mid2y);
   context.quadraticCurveTo(worm.c2x, worm.c2y, worm.p2x, worm.p2y);
   context.closePath();
-  context.fillStyle = color;
   context.fill();
 
   worm.c1x = edge1x;

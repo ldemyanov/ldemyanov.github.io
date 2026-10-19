@@ -150,6 +150,7 @@
         hasPendingPointer = false;
       }
 
+      if (worms.length) context.fillStyle = interactiveBackdropColors.ribbon;
       for (let index = worms.length - 1; index >= 0; index -= 1) {
         const worm = worms[index];
         if (!worm) continue;
@@ -157,7 +158,7 @@
           worms.splice(index, 1);
           continue;
         }
-        drawWorm(context, worm, interactiveBackdropColors.ribbon);
+        drawWorm(context, worm);
         worm.count += 1;
       }
 
