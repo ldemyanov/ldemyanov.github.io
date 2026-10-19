@@ -28,6 +28,7 @@
     "start": "astro dev",
     "build": "astro build && node scripts/check-local-links.mjs",
     "check:links": "node scripts/check-local-links.mjs",
+    "profile:backdrop": "node scripts/trace-interactive-backdrop.mjs",
     "preview": "astro preview",
     "check": "astro check",
     "sync": "astro sync",
