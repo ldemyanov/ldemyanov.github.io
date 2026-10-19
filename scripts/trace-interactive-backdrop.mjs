@@ -6,6 +6,7 @@ import { join, resolve } from 'node:path';
 import { launchChrome } from './backdrop-trace/chrome.mjs';
 import { connectCdp } from './backdrop-trace/cdp.mjs';
 import { preparePage, runBenchmark, warmUp } from './backdrop-trace/benchmark.mjs';
+import { ensurePreview } from './backdrop-trace/preview.mjs';
 
 const categories = [
   'devtools.timeline', 'blink.user_timing', 'v8',
@@ -21,7 +22,7 @@ const categories = [
  */
 function parseOptions(args) {
   const options = {
-    url: 'http://127.0.0.1:4321/', label: 'run', width: 1440, height: 900,
+    url: 'http://127.0.0.1:4322/', label: 'run', width: 1440, height: 900,
   };
   for (let index = 0; index < args.length; index += 2) {
     const key = args[index];
@@ -83,10 +84,11 @@ async function main(options) {
   const base = join(reports, `backdrop-${options.label}-${stamp}`);
   let chrome;
   let cdp;
+  let preview;
   let traceStarted = false;
   try {
-    const response = await fetch(options.url);
-    if (!response.ok) throw new Error(`Preview вернул HTTP ${response.status}: ${options.url}`);
+    preview = await ensurePreview(options.url);
+    if (preview.started) console.log(`Preview запущен: ${options.url}`);
     chrome = await launchChrome(options);
     cdp = await connectCdp(chrome.webSocketUrl);
     await preparePage(cdp, options.url, options.width, options.height);
@@ -127,6 +129,7 @@ async function main(options) {
     }
     cdp?.close();
     await chrome?.close();
+    await preview?.close();
   }
 }
 

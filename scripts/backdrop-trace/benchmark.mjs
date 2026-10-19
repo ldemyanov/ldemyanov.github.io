@@ -31,7 +31,7 @@ export async function evaluate(cdp, expression, awaitPromise = false) {
 }
 
 /**
- * Загружает страницу, дожидается ресурсов и проверяет наличие фона на главной.
+ * Загружает страницу, дожидается шрифтов и проверяет наличие фона на главной.
  * @param {object} cdp Клиент Chrome DevTools Protocol.
  * @param {string} url Адрес сайта для записи.
  * @param {number} width Ширина viewport в CSS-пикселях.
@@ -48,12 +48,13 @@ export async function preparePage(cdp, url, width, height) {
   const loaded = cdp.waitFor('Page.loadEventFired');
   await cdp.send('Page.navigate', { url });
   await loaded;
+  // Page.loadEventFired уже дождался обычных изображений. Вызов decode() для
+  // всех lazy-изображений может ждать бесконечно, пока они остаются вне экрана.
   const ready = await evaluate(cdp, `Promise.race([
-    Promise.all([document.fonts.ready, ...Array.from(document.images, image => image.decode().catch(() => {}))])
-      .then(() => true),
+    document.fonts.ready.then(() => true),
     new Promise(resolve => setTimeout(() => resolve(false), 20000))
   ])`, true);
-  if (!ready) throw new Error('Шрифты или изображения не загрузились за 20 секунд.');
+  if (!ready) throw new Error('Шрифты начального экрана не загрузились за 20 секунд.');
   const available = await evaluate(cdp, `(() => {
     window.scrollTo(0, 0);
     return Boolean(document.querySelector('#interactive-backdrop'))
