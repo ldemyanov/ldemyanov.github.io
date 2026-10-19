@@ -26,6 +26,9 @@
   // Геометрия извилистых лент вынесена отдельно; здесь остаётся жизненный цикл canvas.
   import { createWorm, drawWorm, type Worm } from '~/lib/interactive-backdrop-worms';
 
+  // Отдельный модуль добавляет window.runBackdropBenchmark только при astro dev.
+  if (import.meta.env.DEV) void import('~/lib/interactive-backdrop-benchmark.js');
+
   const canvas = document.querySelector<HTMLCanvasElement>('#interactive-backdrop');
   const context = canvas?.getContext('2d');
 
