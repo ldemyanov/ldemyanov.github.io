@@ -1,13 +1,17 @@
 // В dev-режиме компонент главной страницы загружает этот модуль автоматически.
-// В консоли запустите window.runBackdropBenchmark().
+// Нажмите Option/Alt + Shift + B на странице или вызовите window.runBackdropBenchmark().
+
+let benchmarkRunning = false;
 
 /**
  * Запускает повторяемую пятитисекундную траекторию для сравнения обработчика
  * указателя и отрисовки фона в разных версиях сайта. Первый тестовый импульс
- * выполняется до записи, чтобы не смешивать измерение с созданием canvas.
+ * выполняется до измеряемого интервала, чтобы не смешивать его с созданием canvas.
  * @returns {void} Результат выводится в консоль после завершения прогона.
  */
 window.runBackdropBenchmark = function startBackdropBenchmark() {
+  if (benchmarkRunning) return;
+  benchmarkRunning = true;
   const events = 300;
   const intervalMs = 1000 / 60;
   const startDelayMs = 6000;
@@ -20,11 +24,13 @@ window.runBackdropBenchmark = function startBackdropBenchmark() {
   let lastEventAt = 0;
   let maxScheduleLagMs = 0;
 
+  performance.clearMarks('backdrop-benchmark-queued');
   performance.clearMarks('backdrop-benchmark-start');
   performance.clearMarks('backdrop-benchmark-end');
   performance.clearMeasures('backdrop-benchmark');
+  performance.mark('backdrop-benchmark-queued');
 
-  // Прогрев запускает отложенное создание canvas до начала трассировки.
+  // Прогрев запускает отложенное создание canvas до метки начала теста.
   window.dispatchEvent(new PointerEvent('pointermove', {
     pointerType: 'mouse', pointerId: 1, isPrimary: true,
     clientX: centerX, clientY: centerY, bubbles: true,
@@ -40,6 +46,7 @@ window.runBackdropBenchmark = function startBackdropBenchmark() {
   function finishBackdropBenchmark() {
     performance.mark('backdrop-benchmark-end');
     performance.measure('backdrop-benchmark', 'backdrop-benchmark-start', 'backdrop-benchmark-end');
+    benchmarkRunning = false;
     console.table({
       events,
       actualDurationMs: Math.round(lastEventAt - firstEventAt),
@@ -87,6 +94,20 @@ window.runBackdropBenchmark = function startBackdropBenchmark() {
     emitBackdropPointer();
   }
 
-  console.info('Прогрев выполнен. Запустите запись Performance: тест начнётся через 6 секунд.');
+  console.info('Прогрев выполнен. Тест начнётся через 6 секунд.');
   window.setTimeout(beginBackdropBenchmark, startDelayMs);
 };
+
+/**
+ * Запускает бенчмарк по Option/Alt + Shift + B, когда фокус находится на странице.
+ * Повторные события удерживаемых клавиш не запускают второй прогон.
+ * @param {KeyboardEvent} event Событие нажатия клавиш в окне страницы.
+ * @returns {void} Запускает тест только при точном совпадении сочетания.
+ */
+function handleBackdropBenchmarkShortcut(event) {
+  if (event.code !== 'KeyB' || !event.altKey || !event.shiftKey || event.ctrlKey || event.metaKey || event.repeat) return;
+  event.preventDefault();
+  window.runBackdropBenchmark();
+}
+
+window.addEventListener('keydown', handleBackdropBenchmarkShortcut);
