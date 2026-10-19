@@ -17,7 +17,7 @@ const categories = [
 /**
  * Разбирает аргументы командной строки и проверяет адрес локального сайта.
  * @param {string[]} args Аргументы после имени скрипта.
- * @returns {{url: string, label: string, chrome?: string, width: number, height: number, revision?: string}} Настройки прогона.
+ * @returns {{url: string, label: string, chrome?: string, width: number, height: number}} Настройки прогона.
  */
 function parseOptions(args) {
   const options = {
@@ -26,8 +26,8 @@ function parseOptions(args) {
   for (let index = 0; index < args.length; index += 2) {
     const key = args[index];
     const value = args[index + 1];
-    if (!value || !['--url', '--label', '--chrome', '--width', '--height', '--revision'].includes(key)) {
-      throw new Error(`Неверный аргумент ${key ?? ''}. Используйте --url, --label, --chrome, --width, --height, --revision.`);
+    if (!value || !['--url', '--label', '--chrome', '--width', '--height'].includes(key)) {
+      throw new Error(`Неверный аргумент ${key ?? ''}. Используйте --url, --label, --chrome, --width, --height.`);
     }
     options[key.slice(2)] = value;
   }
@@ -108,7 +108,6 @@ async function main(options) {
     await saveTrace(cdp, stream, `${base}.json.gz`);
     await writeFile(`${base}.meta.json`, JSON.stringify({
       label: options.label,
-      siteRevision: options.revision ?? null,
       url: options.url,
       chrome: chrome.version,
       viewport: { width: options.width, height: options.height, devicePixelRatio: 1 },
