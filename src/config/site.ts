@@ -9,7 +9,7 @@ export const siteConfig: SiteConfig = {
   title: 'Портфолио Fullstack-разработчика',
   description: 'Портфолио Леонида Демьянова, Fullstack-разработчика из Астаны. Создаю сайты, веб-приложения, интеграции и решения на основе ИИ для цифровых продуктов и бизнеса.',
   url: import.meta.env.SITE ?? 'https://ldemyanov.github.io',
-  ogImage: '/og-default.png',
+  ogImage: '/og-default-v2.png',
   locale: 'ru',
   themeColor: '#c8f14d',
 
